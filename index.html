@@ -264,13 +264,6 @@
             </div>
         </div>
     </div>
-    <script>
-        var planeLoadingLayer;
-        layui.use('layer', function() {
-            var layer = layui.layer;
-            planeLoadingLayer = layer.load(2);
-        })
-    </script>
     <script type="text/javascript" src="js/getAircraftExcel.js"></script>
     <script type="text/javascript" src="js/searchPlace.js"></script>
     <script type="text/javascript" src="js/createMap.js"></script>
@@ -280,6 +273,12 @@
     <script type="text/javascript" src="js/getPlane.js"></script>
     <script type="text/javascript" src="js/serverChoose.js"></script>
     <script>
+        var planeLoadingLayer;
+        layui.use('layer', function() {
+            var layer = layui.layer;
+            planeLoadingLayer = layer.load(2);
+        })
+        
         if (nowServer === 'ts') {
             getTSPlane(function() {}, function() {
                 layer.close(planeLoadingLayer);
