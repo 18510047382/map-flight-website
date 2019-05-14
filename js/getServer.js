@@ -7,6 +7,6 @@ function getServer(callback) {
         }
     }
 
-    xmlhttp.open("POST", 'http://' + document.domain + ":8000/getServer", true);
+    xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/getServer', true);
     xmlhttp.send();
 }
