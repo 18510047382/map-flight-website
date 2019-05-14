@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zhcn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="map-flight, liveflight中国版, IF航班查询, map, flight, map-flight-CN, infinite, flight, tracking, map, plane, aviation, simulator">
+    <meta name="author" content="Bill Dong">
+    <meta name="description" content="map-flight是Infinite Flight的飞行追踪器。实时跟踪航班和ATC，轻松搜索和发现新机场！">
+    <link rel="icon" type="image/x-icon" href="img/logo.ico">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <script type="text/javascript" src="js/getServer.js"></script>
+    <script type="text/javascript" src="js/api/mustache.min.js"></script>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=z6oRGxGCIyv61zKzfjnB7Kg3ZsnFmb2L"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+    <title>Map-Flight | Infinite Flight 实时航班系统</title>
+</head>
+
+<!-- component -->
+<!-- plane-index -->
+<div style="display: none;" id="component-plane-index">
+    <img class="planeinfo-planeimg" src="img/aircraft/{{thisPlaneName}}.png" onerror="this.src='img/aircraft/default.png';this.onerror = null;"><br>
+    <div class="planeinfo-container">
+        <h1>{{callSign}} - {{userDetail.Name}}</h1>
+        <h2>{{thisPlaneName}}</h2><br><br>
+        <div class="flight-progress-bar">
+            <div class="flight-process-plane"></div>
+            <div class="flight-departure">
+                {{departureAirport}}
+            </div>
+            <div class="flight-arrive">
+                {{destinationAirport}}
+            </div>
+        </div>
+        <div class="flight-progress-bar-pass"></div>
+    </div>
+</div>
+
+<!-- plane-flight -->
+<div style="display: none;" id="component-plane-flight">
+    <div class="planeinfo-container">
+        <h1>{{callSign}} - {{userDetail.Name}}</h1>
+        <h2>{{thisPlaneName}}</h2>
+        <table class="layui-table" lay-skin="row">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>飞机呼号</th>
+                        <th>用户名称</th>
+                        <th>飞机类型</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{callSign}}</td>
+                        <td>{{userDetail.Name}}</td>
+                        <td>{{thisPlaneName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </table>
+        <table class="layui-table" lay-skin="row">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>高度</th>
+                        <th>航向</th>
+                        <th>速度(地)</th>
+                        <th>垂直速度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{altitude}}</td>
+                        <td>{{heading}}</td>
+                        <td>{{speed}}</td>
+                        <td>{{verticalSpeed}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </table>
+        <table class="layui-table" lay-skin="row">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>起飞机场</th>
+                        <th>降落机场</th>
+                        <th>位置经度</th>
+                        <th>位置纬度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{departureAirport}}</td>
+                        <td>{{destinationAirport}}</td>
+                        <td>{{longitude}}</td>
+                        <td>{{latitude}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </table>
+    </div>
+</div>
+
+<!-- plane-user -->
+<div style="display: none;" id="component-plane-user">
+    <div class="planeinfo-container">
+        <h1>{{callSign}} - {{userDetail.Name}}</h1>
+        <h2>{{thisPlaneName}}</h2>
+        <table class="layui-table" lay-skin="row">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>用户名称</th>
+                        <th>飞行次数</th>
+                        <th>飞行时间</th>
+                        <th>降落次数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{userDetail.Name}}</td>
+                        <td>{{userDetail.OnlineFlights}}</td>
+                        <td>{{userDetail.PilotStats.TotalFlightTime}}</td>
+                        <td>{{userDetail.PilotStats.TotalLandings}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </table>
+        <table class="layui-table" lay-skin="row">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>等级</th>
+                        <th>经验值</th>
+                        <th>违规次数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{userDetail.PilotStats.GradeName}}</td>
+                        <td>{{userDetail.PilotStats.TotalXP}}</td>
+                        <td>{{userDetail.PilotStats.TotalViolations}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </table>
+    </div>
+</div>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <a href="http://www.map-flight.com">
+                <div class="layui-logo">
+                    <img src="img/logo-white.png" alt="map-flight-logo" height="37px" style="position: relative; bottom: 2px; margin-right: 5px;">
+                    Map-Flight
+                </div>
+            </a>
+            <ul class="layui-nav layui-layout-left">
+                <li id="leftnav-btn" class="layui-nav-item">
+                    <i class="layui-icon layui-icon-spread-left"></i>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <div size="33" style="position: relative; top: 12px; color: rgb(255, 255, 255); background-color: rgb(188, 188, 188); user-select: none; display: inline-block; text-align: center; line-height: 33px; font-size: 16.5px; border-radius: 50%; height: 33px; width: 33px;">
+                            <svg viewBox="0 0 24 24" style="display: inline-block; fill: rgb(255, 255, 255); height: 19.8px; width: 19.8px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; color: rgb(255, 255, 255); font-size: 19.8px; margin: 6.6px;">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                            </svg></div>
+                    </a>
+                    <dl id="nav-me-childnav" class="layui-nav-child">
+                        <dd lay-unselect>
+                            <h4 style="box-sizing: border-box; color: rgba(0, 0, 0, 0.54); font-size: 14px; font-weight: 500; line-height: 48px; padding-left: 2px; width: 100%;">My:</h4>
+                            <button id="setting-btn" class="layui-btn layui-btn-primary layui-btn-fluid">
+                                <img style="position: relative; bottom: 2px;" height="25px" src="img/icon/setting.png" alt="tieba logo">
+                                <span>我的设置</span>
+                            </button>
+                            <hr>
+                            <h4 style="box-sizing: border-box; color: rgba(0, 0, 0, 0.54); font-size: 14px; font-weight: 500; line-height: 28px; padding-left: 2px; width: 100%;">Follow us!</h4>
+                            <a style="padding: 0; margin: 10px 0;" href="#">
+                                <button class="layui-btn layui-btn-primary layui-btn-fluid">
+                                    <img style="position: relative; bottom: 1px;" height="28px" src="img/icon/tieba.png" alt="tieba logo">
+                                    <span>百度贴吧</span>
+                                </button>
+                            </a>
+                            <a id="showqq-btn" style="padding: 0; margin: 10px 0" href="#">
+                                <button class="layui-btn layui-btn-primary layui-btn-fluid">
+                                    <img style="position: relative; bottom: 2px;" height="28px" src="img/icon/qq.png" alt="tieba logo">
+                                    <span>站长 QQ</span>
+                                </button>
+                            </a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+
+        <div id="left-nav" style="display: none" class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">选择服务器</a>
+                        <dl class="layui-nav-child">
+                            <dd id="cs-server-btn"><a href="javascript:;">Casual Server</a></dd>
+                            <dd id="ts-server-btn"><a href="javascript:;">Training Server</a></dd>
+                            <dd id="es-server-btn"><a href="javascript:;">Expert Server</a></dd>
+                        </dl>
+                    </li>
+                    <li id="setMyPlane-btn" class="layui-nav-item">
+                        <a href="javascript:;">我的航班</a>
+                    </li>
+                    <li id="searchPlace-btn" class="layui-nav-item">
+                        <a href="javascript:;"><i class="layui-icon layui-icon-search"></i>&nbsp;搜索地点</a>
+                    </li>
+                    <li id="left-nav-bottom" class="layui-nav-item">
+                        <a href="http://www.map-flight.com/"><i class="layui-icon layui-icon-flag"></i>&nbsp;&nbsp;map-flight.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main-body" style="height: 100%; left: 0" class="layui-body">
+            <div id="world-map"></div>
+            <!-- 刷新按钮 -->
+            <button id="map-refresh-btn" class="layui-btn layui-btn-radius layui-btn-primary">
+                <i class="layui-icon layui-icon-refresh"></i>
+                <span>刷新</span>
+            </button>
+            <div class="map-info" id="plane-count"></div>
+            <div class="map-info" id="plan-get-state">
+                <span class="layui-badge-dot"></span>
+                Getting Plan...
+            </div>
+        </div>
+    </div>
+    <script>
+        var planeLoadingLayer;
+        layui.use('layer', function() {
+            var layer = layui.layer;
+            planeLoadingLayer = layer.load(2);
+        })
+    </script>
+    <script type="text/javascript" src="js/getAircraftExcel.js"></script>
+    <script type="text/javascript" src="js/searchPlace.js"></script>
+    <script type="text/javascript" src="js/createMap.js"></script>
+    <script type="text/javascript" src="js/leftnav.js"></script>
+    <script type="text/javascript" src="js/myPlane.js"></script>
+    <script type="text/javascript" src="js/showQQ.js"></script>
+    <script type="text/javascript" src="js/getPlane.js"></script>
+    <script type="text/javascript" src="js/serverChoose.js"></script>
+    <script>
+        if (nowServer === 'ts') {
+            getTSPlane(function() {}, function() {
+                layer.close(planeLoadingLayer);
+            }, function() {}, true);
+        } else if (nowServer === 'es') {
+            getESPlane(function() {}, function() {
+                layer.close(planeLoadingLayer);
+            }, function() {}, true);
+        } else {
+            getCSPlane(function() {}, function() {
+                layer.close(planeLoadingLayer);
+            }, function() {}, true);
+        }
+
+        layui.use('element', function() {
+            var element = layui.element;
+            var settingBtn = document.querySelector('#nav-me-childnav #setting-btn').onclick = triggerLeftnav;
+        })
+    </script>
+</body>
+
+</html>
