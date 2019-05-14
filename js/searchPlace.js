@@ -11,7 +11,6 @@ document.querySelector('#searchPlace-btn').onclick = function() {
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 layer.close(loadingPlaceLayer);
-                console.log(xmlhttp.responseText);
                 toPlace(JSON.parse(xmlhttp.responseText));
             }
         }
