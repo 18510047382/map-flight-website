@@ -143,7 +143,7 @@
                 })
                 mk.onclick = function() {
                     if (Object.keys(flightPlanObj).length === 0) {
-                        layer.msg('航班计划还在加载中，请稍后再试...<br>（地图右下角可以看到获取状态）');
+                        layer.msg('航班计划还在获取中，请稍后再试...<br>（地图右下角可以看到获取状态）');
                         return;
                     }
 
@@ -218,7 +218,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/getFlightPlans', true);
+        xmlhttp.open("POST", 'http://' + document.domain + ':8000/getFlightPlans', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + sessionId);
     }
@@ -230,7 +230,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/getUserDetail', true);
+        xmlhttp.open("POST", 'http://' + document.domain + ':8000/getUserDetail', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + userID);
     }
@@ -242,7 +242,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/getAllFlights', true);
+        xmlhttp.open("POST", 'http://' + document.domain + ':8000/getAllFlights', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + sessionId);
     }
