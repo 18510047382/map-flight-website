@@ -25,6 +25,17 @@ main {
     }
 }
 
+#index-ads {
+    height: 60px;
+    max-width: 468px;
+    width: 100%;
+    position: fixed;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    bottom: 20px;
+}
+
 .layui-layer-tab {
     max-width: 100%;
 }
