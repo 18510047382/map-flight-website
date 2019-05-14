@@ -277,21 +277,21 @@
         layui.use('layer', function() {
             var layer = layui.layer;
             planeLoadingLayer = layer.load(2);
+
+            if (nowServer === 'ts') {
+                getTSPlane(function() {}, function() {
+                    layer.close(planeLoadingLayer);
+                }, function() {}, true);
+            } else if (nowServer === 'es') {
+                getESPlane(function() {}, function() {
+                    layer.close(planeLoadingLayer);
+                }, function() {}, true);
+            } else {
+                getCSPlane(function() {}, function() {
+                    layer.close(planeLoadingLayer);
+                }, function() {}, true);
+            }
         })
-        
-        if (nowServer === 'ts') {
-            getTSPlane(function() {}, function() {
-                layer.close(planeLoadingLayer);
-            }, function() {}, true);
-        } else if (nowServer === 'es') {
-            getESPlane(function() {}, function() {
-                layer.close(planeLoadingLayer);
-            }, function() {}, true);
-        } else {
-            getCSPlane(function() {}, function() {
-                layer.close(planeLoadingLayer);
-            }, function() {}, true);
-        }
 
         layui.use('element', function() {
             var element = layui.element;
