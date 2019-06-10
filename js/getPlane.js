@@ -137,7 +137,7 @@
                     thisIcon = myIcon;
                 }
 
-                if (filterPlane && flights[i].CallSign.substr(0, filterPlane.length) !== filterPlane) {
+                if (filterPlane && flights[i].DisplayName.substr(0, filterPlane.length) !== filterPlane) {
                     continue;
                 }
 
