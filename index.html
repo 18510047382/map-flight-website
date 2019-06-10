@@ -293,14 +293,23 @@
             if (nowServer === 'ts') {
                 getTSPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
+                    if (filterPlane) {
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                    }
                 }, function() {}, true);
             } else if (nowServer === 'es') {
                 getESPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
+                    if (filterPlane) {
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                    }
                 }, function() {}, true);
             } else {
                 getCSPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
+                    if (filterPlane) {
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                    }
                 }, function() {}, true);
             }
         })
