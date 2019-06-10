@@ -102,13 +102,13 @@
                     firstCallback();
                 }
 
-                printFlight(flights);
+                let userCount = printFlight(flights);
 
                 if (lastCallback) {
                     lastCallback();
                 }
 
-                document.querySelector('#plane-count').innerText = data.UserCount + '/' + data.MaxUsers;
+                document.querySelector('#plane-count').innerText = userCount + '/' + data.MaxUsers;
             })
 
             getFlightPlans(data.Id, function(plans) {
@@ -124,6 +124,7 @@
     }
 
     function printFlight(flights) {
+        let userCount = 0;
         layui.use('layer', function() {
             var layer = layui.layer,
                 thisIcon,
@@ -140,6 +141,8 @@
                 if (filterPlane && flights[i].DisplayName.substr(0, filterPlane.length) !== filterPlane) {
                     continue;
                 }
+
+                userCount++;
 
                 var mk = new BMap.Marker(new BMap.Point(flights[i].Longitude, flights[i].Latitude), {
                     icon: thisIcon,
@@ -213,6 +216,7 @@
                 map.addOverlay(mk);
             }
         })
+        return userCount;
     }
 
     function getFlightPlans(sessionId, callback) {
