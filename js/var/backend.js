@@ -1,1 +1,1 @@
-window.backendLink = document.domain;
+window.backendLink = "mapflight.skyogo.com";
