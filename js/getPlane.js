@@ -222,7 +222,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://' + backendLink + ':8000/getFlightPlans', true);
+        xmlhttp.open("POST", 'https://' + backendLink + ':8000/getFlightPlans', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + sessionId);
     }
@@ -234,7 +234,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://' + backendLink + ':8000/getUserDetail', true);
+        xmlhttp.open("POST", 'https://' + backendLink + ':8000/getUserDetail', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + userID);
     }
@@ -246,7 +246,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://' + backendLink + ':8000/getAllFlights', true);
+        xmlhttp.open("POST", 'https://' + backendLink + ':8000/getAllFlights', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + sessionId);
     }
