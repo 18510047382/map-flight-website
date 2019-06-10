@@ -14,7 +14,7 @@ document.querySelector('#searchPlace-btn').onclick = function() {
                 toPlace(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/searchPlace', true);
+        xmlhttp.open("POST", 'http://' + backendLink + ":8000/searchPlace", true);
         xmlhttp.send('place=' + value);
 
         layer.close(index);
