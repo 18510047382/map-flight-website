@@ -1,3 +1,5 @@
+console.log('Map-Flight.com ©️2019 (Bill Dong)');
+
 var map = new BMap.Map("world-map");
 var point = new BMap.Point(116.404, 39.915);
 map.centerAndZoom(point, 5);
