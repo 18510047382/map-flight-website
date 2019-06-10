@@ -7,6 +7,6 @@ function getServer(callback) {
         }
     }
 
-    xmlhttp.open("POST", 'http://' + backendLink + ':8000/getServer', true);
+    xmlhttp.open("POST", 'https://' + backendLink + ':8000/getServer', true);
     xmlhttp.send();
 }
