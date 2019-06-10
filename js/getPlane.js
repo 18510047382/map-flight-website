@@ -137,6 +137,10 @@
                     thisIcon = myIcon;
                 }
 
+                if (filterPlane && flights[i].CallSign.substr(0, filterPlane.length) !== filterPlane) {
+                    continue;
+                }
+
                 var mk = new BMap.Marker(new BMap.Point(flights[i].Longitude, flights[i].Latitude), {
                     icon: thisIcon,
                     rotation: flights[i].Heading
@@ -218,7 +222,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/getFlightPlans', true);
+        xmlhttp.open("POST", 'http://' + backendLink + ':8000/getFlightPlans', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + sessionId);
     }
@@ -230,7 +234,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/getUserDetail', true);
+        xmlhttp.open("POST", 'http://' + backendLink + ':8000/getUserDetail', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + userID);
     }
@@ -242,7 +246,7 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'http://mapflight.skyogo.com:8000/getAllFlights', true);
+        xmlhttp.open("POST", 'http://' + backendLink + ':8000/getAllFlights', true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id=" + sessionId);
     }
