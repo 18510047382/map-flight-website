@@ -23,7 +23,7 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=z6oRGxGCIyv61zKzfjnB7Kg3ZsnFmb2L"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
-    <title>Map-Flight CAVA系统 | Infinite Flight 实时航班系统</title>
+    <title>Map-Flight | Infinite Flight 实时航班系统</title>
 </head>
 
 <!-- component -->
@@ -293,14 +293,23 @@
             if (nowServer === 'ts') {
                 getTSPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
+                    if (filterPlane) {
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                    }
                 }, function() {}, true);
             } else if (nowServer === 'es') {
                 getESPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
+                    if (filterPlane) {
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                    }
                 }, function() {}, true);
             } else {
                 getCSPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
+                    if (filterPlane) {
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                    }
                 }, function() {}, true);
             }
         })
