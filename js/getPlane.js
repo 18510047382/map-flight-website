@@ -150,8 +150,7 @@
                 })
                 mk.onclick = function() {
                     if (Object.keys(flightPlanObj).length === 0) {
-                        layer.msg('航班计划还在获取中，请稍后再试...<br>（地图右下角可以看到获取状态）');
-                        return;
+                        layer.msg('航班计划还在获取中，某些字段会显示"UnK"！<br>（地图右下角可以看到获取状态）');
                     }
 
                     var loadPlaneDataLayer = layer.load(2);
