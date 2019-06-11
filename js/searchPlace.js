@@ -14,7 +14,7 @@ document.querySelector('#searchPlace-btn').onclick = function() {
                 toPlace(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("POST", 'https://' + backendLink + ":8000/searchPlace", true);
+        xmlhttp.open("GET", 'https://' + backendLink + ":8000/searchPlace", true);
         xmlhttp.send('place=' + value);
 
         layer.close(index);
