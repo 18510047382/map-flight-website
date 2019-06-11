@@ -226,9 +226,9 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("GET", 'https://' + backendLink + ':8000/getFlightPlans', true);
+        xmlhttp.open("GET", 'https://' + backendLink + ':8000/getFlightPlans?id=' + sessionId, true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("id=" + sessionId);
+        xmlhttp.send();
     }
 
     function getUserDetail(userID, callback) {
@@ -238,9 +238,9 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("GET", 'https://' + backendLink + ':8000/getUserDetail', true);
+        xmlhttp.open("GET", 'https://' + backendLink + ':8000/getUserDetail?id=' + userID, true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("id=" + userID);
+        xmlhttp.send();
     }
 
     function getFlights(sessionId, callback) {
@@ -250,9 +250,9 @@
                 callback(JSON.parse(xmlhttp.responseText));
             }
         }
-        xmlhttp.open("GET", 'https://' + backendLink + ':8000/getAllFlights', true);
+        xmlhttp.open("GET", 'https://' + backendLink + ':8000/getAllFlights?id=' + sessionId, true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("id=" + sessionId);
+        xmlhttp.send();
     }
 
     function getServerData(serverName, callback) {
