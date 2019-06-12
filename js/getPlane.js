@@ -176,6 +176,13 @@
                             return;
                         }
 
+                        var wpt = thisFlightPlanObj ? '' : 'UnK';
+                        if (thisFlightPlanObj) {
+                            for (var i = 0; i < thisFlightPlanObj.Waypoints.length; i++) {
+                                wpt += '<td>' + thisFlightPlanObj.Waypoints[i] + '</td>';
+                            }
+                        }
+
                         layer.tab({
                             area: ['700px', '500px'],
                             tab: [{
@@ -200,7 +207,8 @@
                                     departureAirport: thisFlightPlanObj ? thisFlightPlanObj.DepartureAirportCode : 'UnK',
                                     destinationAirport: thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK',
                                     longitude: this.flight.Longitude,
-                                    latitude: this.flight.Latitude
+                                    latitude: this.flight.Latitude,
+                                    wpt: wpt
                                 })
                             }, {
                                 title: '<i class="layui-icon layui-icon-username"></i>&nbsp;用户信息',
