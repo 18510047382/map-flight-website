@@ -1,6 +1,7 @@
 (function(window, document) {
 
     window.planeList = [];
+    window.planeCurveLine = undefined;
 
     var flightPlanObj = {},
         componentPlaneIndex = document.querySelector('#component-plane-index').innerHTML,
@@ -155,6 +156,11 @@
                         layer.msg('航班计划还在获取中，某些字段会显示"UnK"！<br>（地图右下角可以看到获取状态）');
                     }
 
+                    if (planeCurveLine) {
+                        map.removeOverlay(planeCurveLine);
+                        planeCurveLine = undefined;
+                    }
+
                     getUserDetail(this.userID, (userDetail) => {
                         layer.close(loadPlaneDataLayer);
 
@@ -212,6 +218,7 @@
                                 strokeWeight: 3,
                                 strokeOpacity: 0.5
                             })
+                            planeCurveLine = curveLine;
                             map.addOverlay(curveLine);
                         }
                     })
