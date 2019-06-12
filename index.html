@@ -23,6 +23,7 @@
     <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=z6oRGxGCIyv61zKzfjnB7Kg3ZsnFmb2L&s=1"></script>
     <script type="text/javascript" src="https://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
     <script type="text/javascript" src="https://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
     <title>Map-Flight | Infinite Flight 实时航班系统</title>
 </head>
 
@@ -251,6 +252,9 @@
                     <li id="setMyPlane-btn" class="layui-nav-item">
                         <a href="javascript:;">我的航班</a>
                     </li>
+                    <li id="toggleAirport-btn" class="layui-nav-item">
+                        <a href="javascript:;"><i class="layui-icon layui-icon-location"></i>&nbsp;机场显示</a>
+                    </li>
                     <li id="searchPlace-btn" class="layui-nav-item">
                         <a href="javascript:;"><i class="layui-icon layui-icon-search"></i>&nbsp;搜索地点</a>
                     </li>
@@ -279,11 +283,14 @@
     <script type="text/javascript" src="js/getAircraftExcel.js"></script>
     <script type="text/javascript" src="js/searchPlace.js"></script>
     <script type="text/javascript" src="js/createMap.js"></script>
+    <script type="text/javascript" src="js/getAirportExcel.js"></script>
     <script type="text/javascript" src="js/leftnav.js"></script>
     <script type="text/javascript" src="js/myPlane.js"></script>
     <script type="text/javascript" src="js/showQQ.js"></script>
     <script type="text/javascript" src="js/getPlane.js"></script>
     <script type="text/javascript" src="js/serverChoose.js"></script>
+    <script type="text/javascript" src="js/openNews.js"></script>
+    <script type="text/javascript" src="js/toggleAirport.js"></script>
     <script>
         var planeLoadingLayer;
         layui.use('layer', function() {
