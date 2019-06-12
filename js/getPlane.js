@@ -102,7 +102,7 @@
                     firstCallback();
                 }
 
-                let userCount = printFlight(flights);
+                var userCount = printFlight(flights);
 
                 if (lastCallback) {
                     lastCallback();
@@ -124,7 +124,7 @@
     }
 
     function printFlight(flights) {
-        let userCount = 0;
+        var userCount = 0;
         layui.use('layer', function() {
             var layer = layui.layer,
                 thisIcon,
@@ -149,11 +149,12 @@
                     rotation: flights[i].Heading
                 })
                 mk.onclick = function() {
+                    var loadPlaneDataLayer = layer.load(2);
+
                     if (Object.keys(flightPlanObj).length === 0) {
                         layer.msg('航班计划还在获取中，某些字段会显示"UnK"！<br>（地图右下角可以看到获取状态）');
                     }
 
-                    var loadPlaneDataLayer = layer.load(2);
                     getUserDetail(this.userID, (userDetail) => {
                         layer.close(loadPlaneDataLayer);
 
@@ -204,6 +205,15 @@
                                 })
                             }]
                         })
+
+                        if (typeof airportMarkers !== 'undefined' && airportMarkers[thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK']) {
+                            var curveLine = new BMapLib.CurveLine([new BMap.Point(this.flight.Longitude, this.flight.Latitude), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
+                                strokeColor: "blue",
+                                strokeWeight: 3,
+                                strokeOpacity: 0.5
+                            })
+                            map.addOverlay(curveLine);
+                        }
                     })
                 }.bind({
                     flight: flights[i],
