@@ -1,6 +1,7 @@
 (function(window, document) {
 
     window.planeList = [];
+    window.planeListObj = {};
     window.planeCurveLine = undefined;
 
     var flightPlanObj = {},
@@ -236,6 +237,12 @@
                     callSign: flights[i].CallSign
                 })
 
+                mk.info = {
+                    lon: flights[i].Longitude,
+                    lat: flights[i].Latitude
+                }
+
+                planeListObj[flights[i].CallSign] = mk;
                 planeList.push(mk);
                 map.addOverlay(mk);
             }
