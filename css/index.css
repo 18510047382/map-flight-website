@@ -29,6 +29,15 @@ main {
     }
 }
 
+@media screen and (max-width: 350px) {
+    .layui-logo {
+        width: 150px !important;
+    }
+    .layui-layout-left {
+        left: 150px !important;
+    }
+}
+
 .layui-layer-tab {
     max-width: 100%;
 }
