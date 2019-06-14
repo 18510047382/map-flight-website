@@ -272,8 +272,8 @@
                     <li id="toggleAirport-btn" class="layui-nav-item">
                         <a href="javascript:;"><i class="layui-icon layui-icon-location"></i>&nbsp;机场显示</a>
                     </li>
-                    <li id="searchPlace-btn" class="layui-nav-item">
-                        <a href="javascript:;"><i class="layui-icon layui-icon-search"></i>&nbsp;搜索地点</a>
+                    <li id="search-btn" class="layui-nav-item">
+                        <a href="javascript:;"><i class="layui-icon layui-icon-search"></i>&nbsp;搜索（地点/航班）</a>
                     </li>
                     <li id="left-nav-bottom" class="layui-nav-item">
                         <a href="https://www.map-flight.com/"><i class="layui-icon layui-icon-flag"></i>&nbsp;&nbsp;map-flight.com</a>
@@ -298,7 +298,7 @@
     </div>
     <script type="text/javascript" src="js/setDonateBtn.js"></script>
     <script type="text/javascript" src="js/getAircraftExcel.js"></script>
-    <script type="text/javascript" src="js/searchPlace.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
     <script type="text/javascript" src="js/createMap.js"></script>
     <script type="text/javascript" src="js/getAirportExcel.js"></script>
     <script type="text/javascript" src="js/leftnav.js"></script>
@@ -317,21 +317,21 @@
                 getTSPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
                     if (filterPlane) {
-                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀名称为 "' + filterPlane + '" 的班机！');
                     }
                 }, function() {}, true);
             } else if (nowServer === 'es') {
                 getESPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
                     if (filterPlane) {
-                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀名称为 "' + filterPlane + '" 的班机！');
                     }
                 }, function() {}, true);
             } else {
                 getCSPlane(function() {}, function() {
                     layer.close(planeLoadingLayer);
                     if (filterPlane) {
-                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀呼号为 "' + filterPlane + '" 的班机！');
+                        layer.msg('提示：此系统为 "' + filterPlane + '" 专用系统，只能获取前缀名称为 "' + filterPlane + '" 的班机！');
                     }
                 }, function() {}, true);
             }
