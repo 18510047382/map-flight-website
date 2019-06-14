@@ -19,6 +19,11 @@ main {
     color: #eeeeee !important;
 }
 
+.layui-layer-tab .layui-layer-title {
+    overflow-x: auto !important;
+    padding-right: 30px;
+}
+
 @media screen and (max-width: 450px) {
     .flight-progress-bar .flight-arrive {
         left: 80% !important;
