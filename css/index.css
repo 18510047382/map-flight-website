@@ -20,6 +20,7 @@ main {
 }
 
 .layui-layer-tab .layui-layer-title {
+    overflow-y: hidden !important;
     overflow-x: auto !important;
     padding-right: 30px;
 }
@@ -31,6 +32,12 @@ main {
 
     .layui-layer-tab .layui-layer-title span {
         padding: 0 7px !important;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .layui-layer-tab .layui-layer-title span {
+        padding: 0 3px !important;
     }
 }
 
