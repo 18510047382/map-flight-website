@@ -216,7 +216,7 @@
                 </li>
             </ul>
             <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item">
+                <li id="top-nav-me" class="layui-nav-item">
                     <a href="javascript:;">
                         <div size="33" style="position: relative; top: 12px; color: rgb(255, 255, 255); background-color: rgb(188, 188, 188); user-select: none; display: inline-block; text-align: center; line-height: 33px; font-size: 16.5px; border-radius: 50%; height: 33px; width: 33px;">
                             <svg viewBox="0 0 24 24" style="display: inline-block; fill: rgb(255, 255, 255); height: 19.8px; width: 19.8px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; color: rgb(255, 255, 255); font-size: 19.8px; margin: 6.6px;">
@@ -225,7 +225,12 @@
                     </a>
                     <dl id="nav-me-childnav" class="layui-nav-child">
                         <dd lay-unselect>
-                            <h4 style="box-sizing: border-box; color: rgba(0, 0, 0, 0.54); font-size: 14px; font-weight: 500; line-height: 48px; padding-left: 2px; width: 100%;">My:</h4>
+                            <h4 style="box-sizing: border-box; color: rgba(0, 0, 0, 0.54); font-size: 14px; font-weight: 500; line-height: 48px; padding-left: 2px; width: 100%;">My:
+                                <button style="position: absolute; right: 10px; top: 12px;" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">
+                                    <i style="font-size: 15px; position: relative; top: 1px; left: 1px" class="layui-icon layui-icon-close-fill"></i>
+                                    <span style="font-size: 10px; position: relative; right: 2px">关闭</span>
+                                </button>
+                            </h4>
                             <button id="setting-btn" class="layui-btn layui-btn-primary layui-btn-fluid">
                                 <img style="position: relative; bottom: 2px;" height="25px" src="img/icon/setting.png" alt="tieba logo">
                                 <span>我的设置</span>
@@ -308,6 +313,7 @@
     <script type="text/javascript" src="js/serverChoose.js"></script>
     <script type="text/javascript" src="js/openNews.js"></script>
     <script type="text/javascript" src="js/toggleAirport.js"></script>
+    <script type="text/javascript" src="js/closeTopNavRightBtn.js"></script>
     <script>
         var planeLoadingLayer;
         layui.use('layer', function() {
