@@ -6,7 +6,7 @@ function getAirportExcelFn(extraFn) {
     var data = xmlhttp.responseText,
         thisData,
         markersObj = {},
-        airportIcon = new BMap.Icon('img/icon/airport.png', new BMap.Size(30, 30));
+        airportIcon = new BMap.Icon('img/icon/airport.png', new BMap.Size(25, 25));
 
     data = data.split('\n');
     data.splice(0, 1);
