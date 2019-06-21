@@ -161,7 +161,7 @@
                         map.removeOverlay(planeCurveLine);
                         if (!(localStorage.displayAirport === undefined || localStorage.displayAirport === 'true')) {
                             //隐藏
-                            destAirportMk.hide();
+                            planeCurveLine.destAirportMk.hide();
                         }
                         planeCurveLine = undefined;
                     }
