@@ -177,9 +177,7 @@ main {
 }
 
 #left-nav {
-    opacity: 0;
-    transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
+    display: none;
 }
 
 #leftnav-btn {
