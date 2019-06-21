@@ -159,6 +159,10 @@
 
                     if (planeCurveLine) {
                         map.removeOverlay(planeCurveLine);
+                        if (!(localStorage.displayAirport === undefined || localStorage.displayAirport === 'true')) {
+                            //隐藏
+                            destAirportMk.hide();
+                        }
                         planeCurveLine = undefined;
                     }
 
@@ -227,8 +231,9 @@
                                 strokeWeight: 3,
                                 strokeOpacity: 0.5
                             })
-                            planeCurveLine = curveLine;
                             airportMarkers[thisFlightPlanObj.DestinationAirportCode].show();
+                            curveLine.destAirportMk = airportMarkers[thisFlightPlanObj.DestinationAirportCode];
+                            planeCurveLine = curveLine;
                             map.addOverlay(curveLine);
                         }
                     })
