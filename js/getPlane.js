@@ -131,7 +131,6 @@
             var layer = layui.layer,
                 thisIcon,
                 planeIcon = new BMap.Icon('img/icon/plane.png', new BMap.Size(30, 30)),
-                planeHoverIcon = new BMap.Icon('img/icon/plane-hover.png', new BMap.Size(30, 30)),
                 myIcon = new BMap.Icon('img/icon/plane-my.png', new BMap.Size(30, 30));
 
             for (var i = 0; i < flights.length; i++) {
@@ -246,19 +245,8 @@
 
                 mk.info = {
                     lon: flights[i].Longitude,
-                    lat: flights[i].Latitude,
-                    heading: flights[i].Heading
+                    lat: flights[i].Latitude
                 }
-
-                //设置mk的hover
-                mk.addEventListener('mouseover', function() {
-                    this.setIcon(planeHoverIcon);
-                    this.setRotation(this.info.heading);
-                }.bind(mk))
-                mk.addEventListener('mouseout', function() {
-                    this.setIcon(planeIcon);
-                    this.setRotation(this.info.heading);
-                }.bind(mk))
 
                 planeListObj[flights[i].CallSign] = mk;
                 planeList.push(mk);
