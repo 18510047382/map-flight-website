@@ -246,15 +246,18 @@
 
                 mk.info = {
                     lon: flights[i].Longitude,
-                    lat: flights[i].Latitude
+                    lat: flights[i].Latitude,
+                    heading: flights[i].Heading
                 }
 
                 //设置mk的hover
                 mk.addEventListener('mouseover', function() {
                     this.setIcon(planeHoverIcon);
+                    this.setRotation(this.info.heading);
                 }.bind(mk))
                 mk.addEventListener('mouseout', function() {
                     this.setIcon(planeIcon);
+                    this.setRotation(this.info.heading);
                 }.bind(mk))
 
                 planeListObj[flights[i].CallSign] = mk;
