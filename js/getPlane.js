@@ -228,6 +228,7 @@
                                 strokeOpacity: 0.5
                             })
                             planeCurveLine = curveLine;
+                            airportMarkers[thisFlightPlanObj.DestinationAirportCode].show();
                             map.addOverlay(curveLine);
                         }
                     })
