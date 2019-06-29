@@ -38,14 +38,13 @@ function getAirportExcelFn(extraFn) {
     window.airportMarkers = markersObj;
 }
 
-if (localStorage.displayAirport === undefined || localStorage.displayAirport === 'true') {
-    //显示
-    getAirportExcelFn();
-    localStorage.displayAirport = true;
-    document.querySelector('#toggleAirport-btn').classList.add('layui-this');
-} else {
+if (localStorage.displayAirport === undefined || localStorage.displayAirport === 'false') {
+    //隐藏
     getAirportExcelFn(function(mk){
         mk.hide();
     })
-    localStorage.displayAirport === 'false';
+    localStorage.displayAirport = false;
+} else {
+    getAirportExcelFn();
+    document.querySelector('#toggleAirport-btn').classList.add('layui-this');
 }
