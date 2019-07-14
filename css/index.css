@@ -8,6 +8,7 @@ body {
     width: 100%;
     padding: 0;
     margin: 0;
+    overflow: hidden;
 }
 
 main {
@@ -33,6 +34,23 @@ main {
     .layui-layer-tab .layui-layer-title span {
         padding: 0 7px !important;
     }
+
+    #component-plane {
+        height: 300px !important;
+        width: 100% !important;
+        bottom: 0px !important;
+        left: 0px !important;
+        top: auto !important;
+    }
+    #component-plane-index {
+        width: 100% !important;
+    }
+    #component-plane-info {
+        width: 100% !important;
+    }
+    #component-plane-player {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-width: 320px) {
@@ -45,6 +63,7 @@ main {
     .layui-logo {
         width: 150px !important;
     }
+
     .layui-layout-left {
         left: 150px !important;
     }
@@ -130,13 +149,6 @@ main {
     user-select: none;
 }
 
-#map-refresh-btn {
-    position: fixed;
-    z-index: 1;
-    right: 40px;
-    bottom: 40px;
-}
-
 .map-info {
     display: inline-block;
     position: fixed;
@@ -186,4 +198,212 @@ main {
 
 #leftnav-btn .layui-icon {
     font-size: 18px !important;
+}
+
+#component-plane {
+    height: 80%;
+    width: 300px;
+    background: white;
+    border-radius: 3px;
+    position: fixed;
+    z-index: 20040323;
+    right: 10px;
+    top: 105px;
+    overflow: auto;
+}
+
+#component-plane-menu {
+    height: 50px;
+    width: 100%;
+    background: rgb(0, 188, 212);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+#component-plane-menu div {
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom-color: rgb(0, 188, 212);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    cursor: pointer;
+}
+
+#component-plane-menu div svg {
+    display: inline-block;
+    fill: rgb(255, 255, 255, 0.7);
+    height: 24px;
+    width: 24px;
+    user-select: none;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    margin-top: 12px;
+}
+
+.component-plane-menu-act {
+    border-bottom-color: rgb(255, 87, 34) !important;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+.component-plane-menu-act svg {
+    fill: rgb(255, 255, 255) !important;
+}
+
+.component-plane-window {
+    height: auto;
+    width: 300px;
+}
+
+#component-plane-index hr {
+    margin: -1px 0px 0px;
+    height: 1px;
+    border: none;
+    background-color: rgb(224, 224, 224);
+}
+
+#component-plane-info hr {
+    margin: -1px 0px 0px;
+    height: 1px;
+    border: none;
+    background-color: rgb(224, 224, 224);
+}
+
+#component-plane-player hr {
+    margin: -1px 0px 0px;
+    height: 1px;
+    border: none;
+    background-color: rgb(224, 224, 224);
+}
+
+#component-plane-index-operationBoard {
+    height: 126px;
+    width: 100%;
+    background: rgb(232, 232, 232);
+}
+
+#component-plane-index-operationBoard-operationBar {
+    height: 56px;
+    width: 100%;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+#component-plane-index-operationBoard-operationBar button {
+    border: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: Roboto, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    font-size: 0px;
+    font-weight: inherit;
+    transform: translate3d(0px, 0px, 0px);
+    position: relative;
+    overflow: visible;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    padding: 12px;
+    padding-top: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    height: 48px;
+    background: none;
+}
+
+#component-plane-index-operationBoard-operationBar button svg {
+    display: inline-block;
+    fill: rgba(0, 0, 0, 0.87);
+    height: 24px;
+    width: 24px;
+    user-select: none;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+#component-plane-index-operationBoard-locationBar {
+    height: 70px;
+    width: 100%;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+#component-plane-index-operationBoard-locationBar .part {
+    height: 39px;
+    font-size: 1em;
+    line-height: 1.4285em;
+    cursor: default;
+    user-select: none;
+}
+
+#component-plane-index-operationBoard-locationBar .part strong {
+    font-weight: 700;
+}
+
+#component-plane-index-operationBoard-locationBar .part small {
+    font-size: 80%;
+}
+
+#locationBar {
+    position: relative;
+    top: 50px;
+}
+
+#locationBar .layui-slider {
+    cursor: pointer !important;
+}
+
+#locationBar .layui-slider-wrap-btn {
+    cursor: pointer !important;
+}
+
+.component-plane-index-info {
+    padding: 16px;
+    font-weight: 500;
+    box-sizing: border-box;
+    position: relative;
+    white-space: nowrap;
+}
+
+.component-plane-index-info-content {
+    display: block;
+    vertical-align: top;
+    white-space: normal;
+    padding-right: 0px;
+    padding-left: 50px;
+}
+
+#component-plane-index-info-waypoints-btn {
+    background-color: rgba(175, 175, 175, 0.34);
+    margin-left: 0px;
+    padding: 16px 16px 16px 72px;
+    position: relative;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#component-plane-index-info-waypoints-btn button {
+    border: 10px;
+    box-sizing: border-box;
+    display: block;
+    font-family: Roboto, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    font-size: 0px;
+    font-weight: inherit;
+    transform: translate3d(0px, 0px, 0px);
+    position: absolute;
+    overflow: visible;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    top: 0px;
+    right: 4px;
+    background: none;
 }
