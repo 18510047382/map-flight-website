@@ -18,12 +18,9 @@ function getAirportExcelFn(extraFn) {
         })
         extraFn ? extraFn(mk) : '';
         mk.onclick = function() {
-            this.openInfoWindow(new BMap.InfoWindow(Mustache.render('<h3><b>机场信息：</b></h3><p>名称：{{name}}</p><p>IACO代码：{{code}}</p><p>经度：{{lon}}</p><p>纬度：{{lat}}</p><p>海拔：{{ft}}ft</p>', this.info)), {
-                title: '机场信息',
-                height: 220,
-                width: 320
-            })
+            this.openInfoWindow(new BMap.InfoWindow('<h3><b>机场信息：</b></h3><p>名称：' + this.info.name + '</p><p>IACO代码：' + this.info.code + '</p><p>经度：' + this.info.lon + '</p><p>纬度：' + this.info.lat + '</p><p>海拔：' + this.info.ft + 'ft</p>'));
         }
+
         mk.info = {
             name: thisData[1],
             code: thisData[0],
@@ -40,7 +37,7 @@ function getAirportExcelFn(extraFn) {
 
 if (localStorage.displayAirport === undefined || localStorage.displayAirport === 'false') {
     //隐藏
-    getAirportExcelFn(function(mk){
+    getAirportExcelFn(function(mk) {
         mk.hide();
     })
     localStorage.displayAirport = false;
