@@ -78,7 +78,22 @@
             if (Object.keys(flightPlanObj).length === 0 && !isFirst) {
                 isGetPlanCompleted = false;
                 errorCallback();
-                layer.msg('飞行计划还未获取成功，暂时不能刷新！<br>（如果右下角已经显示获取成功，则服务器无法获得有效的飞行数据，请稍后再试）');
+                if (!isFirst) {
+                    switch (serverName) {
+                        case 'Casual Server':
+                            localStorage.server = 'cs';
+                            location.reload();
+                            break;
+                        case 'Training Server':
+                            localStorage.server = 'ts';
+                            location.reload();
+                            break;
+                        case 'Expert Server':
+                            localStorage.server = 'es';
+                            location.reload();
+                            break;
+                    }
+                }
                 return;
             }
 
