@@ -18,7 +18,13 @@ function getAirportExcelFn(extraFn) {
         })
         extraFn ? extraFn(mk) : '';
         mk.onclick = function() {
+            if (isOpen) {
+                this.closeInfoWindow();
+                this.info.isOpen = false;
+                return;
+            }
             this.openInfoWindow(new BMap.InfoWindow('<h3><b>机场信息：</b></h3><p>名称：' + this.info.name + '</p><p>IACO代码：' + this.info.code + '</p><p>经度：' + this.info.lon + '</p><p>纬度：' + this.info.lat + '</p><p>海拔：' + this.info.ft + 'ft</p>'));
+            this.info.isOpen = true;
         }
 
         mk.info = {
@@ -26,7 +32,8 @@ function getAirportExcelFn(extraFn) {
             code: thisData[0],
             lat: thisData[2],
             lon: thisData[3],
-            ft: thisData[4]
+            ft: thisData[4],
+            isOpen: false
         }
         markersObj[thisData[0]] = mk;
         map.addOverlay(mk);
