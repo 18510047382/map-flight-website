@@ -18,7 +18,7 @@ function getAirportExcelFn(extraFn) {
         })
         extraFn ? extraFn(mk) : '';
         mk.onclick = function() {
-            if (isOpen) {
+            if (this.info.isOpen) {
                 this.closeInfoWindow();
                 this.info.isOpen = false;
                 return;
