@@ -35,6 +35,11 @@ function getAirportExcelFn(extraFn) {
             ft: thisData[4],
             isOpen: false
         }
+
+        mk.addEventListener('infowindowclose', function() {
+            this.info.isOpen = false;
+        })
+
         markersObj[thisData[0]] = mk;
         map.addOverlay(mk);
     }
