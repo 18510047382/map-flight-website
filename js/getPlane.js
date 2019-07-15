@@ -128,8 +128,8 @@
         layui.use('layer', function() {
             var layer = layui.layer,
                 thisIcon,
-                planeIcon = new BMap.Icon('img/icon/plane.png', new BMap.Size(30, 30)),
-                myIcon = new BMap.Icon('img/icon/plane-my.png', new BMap.Size(30, 30));
+                planeIcon = new BMap.Icon('img/icon/plane.png', new BMap.Size(20, 20)),
+                myIcon = new BMap.Icon('img/icon/plane-my.png', new BMap.Size(20, 20));
 
             for (var i = 0; i < flights.length; i++) {
                 if (localStorage.myPlane !== flights[i].CallSign) {
