@@ -187,7 +187,7 @@
                             return;
                         }
 
-                        console.log(this.flight, userDetail, thisFlightPlanObj);
+                        //console.log(this.flight, userDetail, thisFlightPlanObj);
 
                         /*
                         {
