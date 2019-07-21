@@ -42,12 +42,15 @@ main {
         left: 0px !important;
         top: auto !important;
     }
+
     #component-plane-index {
         width: 100% !important;
     }
+
     #component-plane-info {
         width: 100% !important;
     }
+
     #component-plane-player {
         width: 100% !important;
     }
@@ -66,6 +69,27 @@ main {
 
     .layui-layout-left {
         left: 150px !important;
+    }
+}
+
+#ads {
+    height: 60px;
+    width: 600px;
+    position: fixed;
+    bottom: 30px;
+    margin: auto;
+    right: 0px;
+    left: 0px;
+    background-image: url(../img/logo.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 700px) {
+    #ads {
+        height: 40px;
+        width: 300px;
+        left: 0px !important
     }
 }
 
@@ -144,9 +168,13 @@ main {
 }
 
 #world-map {
-    height: 100%;
+    height: calc(100% - 60px);
     width: 100%;
     user-select: none;
+}
+
+.anchorBL {
+    display: none !important;
 }
 
 .map-info {
