@@ -76,11 +76,31 @@ main {
     height: 60px;
     width: 600px;
     position: fixed;
-    bottom: 30px;
     margin: auto;
     right: 0px;
     left: 0px;
-    background-image: url(../img/logo.png);
+    bottom: 10px;
+}
+
+#ads button {
+    height: 12px;
+    width: auto;
+    background: #eee;
+    opacity: 0.3;
+    position: relative;
+    bottom: 63px;
+    left: 570px;
+    font-size: 12px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+#ads-img {
+    display: inline-block;
+    height: 60px;
+    width: 600px;
+    background-image: url(../img/ads/laptop.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -89,7 +109,15 @@ main {
     #ads {
         height: 40px;
         width: 300px;
-        left: 0px !important
+    }
+    #ads button {
+        left: 270px !important;
+        bottom: 43px !important;
+    }
+    #ads-img {
+        height: 40px;
+        width: 300px;
+        background-image: url(../img/ads/mobile.png) !important;
     }
 }
 
