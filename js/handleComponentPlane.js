@@ -58,7 +58,9 @@ comPlaneMenuPlayerBtn.onclick = function() {
 document.querySelector('#component-plane-index-info-waypoints-btn').onclick = function() {
     if (comPlaneInfoWaypoints.style.display === 'none') {
         comPlaneInfoWaypoints.style.display = 'block';
+        document.querySelector('#component-plane-index-info-waypoints-btn-svgBtn').innerHTML = '<svg viewBox="0 0 24 24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path></svg>';
     } else {
         comPlaneInfoWaypoints.style.display = 'none';
+        document.querySelector('#component-plane-index-info-waypoints-btn-svgBtn').innerHTML = '<svg viewBox="0 0 24 24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>';
     }
 }
