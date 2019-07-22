@@ -35,8 +35,12 @@ main {
         padding: 0 7px !important;
     }
 
+    .show-component-plane-closeBar {
+        display: block !important;
+    }
+
     #component-plane {
-        height: 300px !important;
+        height: calc(100% - 42px) !important;
         width: 100% !important;
         bottom: 0px !important;
         left: 0px !important;
@@ -119,6 +123,10 @@ main {
         width: 300px;
         background-image: url(../img/ads/mobile.png) !important;
     }
+}
+
+.show {
+    display: block !important;
 }
 
 .layui-layer-tab {
@@ -254,6 +262,23 @@ main {
 
 #leftnav-btn .layui-icon {
     font-size: 18px !important;
+}
+
+#component-plane-closeBar {
+    height: 42px;
+    width: 100%;
+    position: fixed;
+    background: black;
+    z-index: 20040323;
+}
+
+#component-plane-closeBar i {
+    color: white;
+    font-weight: 600;
+    font-size: 22px;
+    position: absolute;
+    right: 30px;
+    top: 10px;
 }
 
 #component-plane {
