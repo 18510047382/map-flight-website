@@ -5,7 +5,8 @@
     window.planePolyLine = undefined;
 
     var flightPlanObj = {},
-        componentPlane = document.querySelector('#component-plane');
+        componentPlane = document.querySelector('#component-plane'),
+        componentPlaneCloseBar = document.querySelector('#component-plane-closeBar');
 
     document.querySelector('#map-refresh-btn').onclick = function() {
         layui.use('layer', function() {
@@ -276,7 +277,8 @@
                         document.querySelector('#component-plane-player-ghost').innerText = userDetail.PilotStats.TotalATCGhostings;
 
                         //显示面板
-                        componentPlane.style.display = 'block';
+                        componentPlane.classList.add('show');
+                        componentPlaneCloseBar.classList.add('show-component-plane-closeBar');
 
                         if (typeof airportMarkers !== 'undefined' && airportMarkers[thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK']) {
                             var polyLine = new BMap.Polyline([new BMap.Point(this.flight.Longitude, this.flight.Latitude), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
