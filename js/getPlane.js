@@ -247,7 +247,7 @@
                         document.querySelector('#component-plane-index-info-vsFt').innerText = parseInt(this.flight.VerticalSpeed) + 'ft';
                         document.querySelector('#component-plane-index-info-vsMetre').innerText = parseInt(this.flight.VerticalSpeed * 0.3048) + 'm';
                         document.querySelector('#component-plane-index-info-headingDeg').innerText = parseInt(this.flight.Heading) + 'deg';
-                        document.querySelector('#component-plane-index-info-headingRad').innerText = parseInt(this.flight.Heading * 0.01745) + 'π';
+                        document.querySelector('#component-plane-index-info-headingRad').innerText = getDirection(parseInt(this.flight.Heading));
                         document.querySelector('#component-plane-index-info-depAirport').innerText = thisFlightPlanObj ? thisFlightPlanObj.DepartureAirportCode : 'Loading...';
                         document.querySelector('#component-plane-index-info-arrAirport').innerText = thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'Loading...';
                         //info页面的dep和arr机场、经度、纬度、最后更新时间、当前时间
@@ -366,5 +366,33 @@
             return date.getFullYear() + "-" + month + "-" + currentDate;
         }
         return "";
+    }
+
+    function getDirection(deg) {
+        if (deg === 0 || deg === 360) {
+            return 'North';
+        }
+        if (deg === 90) {
+            return 'East';
+        }
+        if (deg === 180) {
+            return 'South';
+        }
+        if (deg === 270) {
+            return 'West';
+        }
+        if (deg > 0 && deg < 90) {
+            return 'Northeast';
+        }
+        if (deg > 90 && deg < 180) {
+            return 'Southeast';
+        }
+        if (deg > 180 && deg < 270) {
+            return 'Southwest';
+        }
+        if (deg > 270 && deg < 360) {
+            return 'Northwest';
+        }
+        return 'Unknown';
     }
 })(window, document);
