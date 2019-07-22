@@ -1,5 +1,10 @@
 map.onclick = function() {
-    document.querySelector('#component-plane').style.display = 'none';
+    document.querySelector('#component-plane').classList.remove('show');
+}
+
+document.querySelector('#component-plane-closeBar').onclick = function() {
+    this.classList.remove('show-component-plane-closeBar');
+    document.querySelector('#component-plane').classList.remove('show');
 }
 
 layui.use('slider', function() {
