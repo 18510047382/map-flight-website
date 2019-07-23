@@ -114,10 +114,12 @@ main {
         height: 40px;
         width: 300px;
     }
+
     #ads button {
         left: 270px !important;
         bottom: 43px !important;
     }
+
     #ads-img {
         height: 40px;
         width: 300px;
