@@ -1,0 +1,39 @@
+.BMap_shadow {
+    display: none;
+}
+
+.BMap_pop div:nth-child(1) div {
+    border-radius: 8px 0 0 0;
+}
+
+.BMap_pop div:nth-child(3) {
+    border-radius: 0 9px 0 0;
+    border-top: 1px solid #ababab;
+    border-right: 1px solid #ababab;
+    border-left: 1px solid white;
+    width: 23px !important;
+    height: 24px !important;
+    background-color: white;
+}
+
+.BMap_pop div:nth-child(3) div {
+    display: none;
+}
+
+.BMap_pop div:nth-child(5) div {
+    border-radius: 0 0 0 8px;
+}
+
+.BMap_pop div:nth-child(7) {
+    border-radius: 0 0 9px 0;
+    border-right: 1px solid #ababab;
+    border-bottom: 1px solid #ababab;
+    border-left: 1px solid white;
+    width: 23px !important;
+    height: 24px !important;
+    background-color: white;
+}
+
+.BMap_pop div:nth-child(7) div {
+    display: none;
+}
