@@ -1,4 +1,4 @@
-function getAirportExcelFn(extraFn) {
+function getAirportExcelFn() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", 'data/airport.csv', false);
     xmlhttp.send();
@@ -16,7 +16,6 @@ function getAirportExcelFn(extraFn) {
         var mk = new BMap.Marker(new BMap.Point(thisData[3], thisData[2]), {
             icon: airportIcon
         })
-        extraFn ? extraFn(mk) : '';
         mk.onclick = function() {
             if (this.info.isOpen) {
                 this.closeInfoWindow();
@@ -49,9 +48,6 @@ function getAirportExcelFn(extraFn) {
 
 if (localStorage.displayAirport === undefined || localStorage.displayAirport === 'false') {
     //隐藏
-    getAirportExcelFn(function(mk) {
-        mk.hide();
-    })
     localStorage.displayAirport = false;
 } else {
     getAirportExcelFn();
