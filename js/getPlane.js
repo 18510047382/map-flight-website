@@ -113,6 +113,7 @@
         document.querySelector('#plan-get-state').innerHTML = '<span class="layui-badge-dot"></span>&nbsp;Getting Plan...';
 
         getServerData(serverName, function(data) {
+            getATC(serverName, data);
             getFlights(data.Id, function(flights) {
                 if (firstCallback) {
                     firstCallback();
