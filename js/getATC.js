@@ -27,6 +27,9 @@ function getATC(server, id) {
                     newData[data[i].Name] = {};
                 }
                 newData[data[i].Name][data[i].Type] = data[i];
+                if (typeof airportMarkers === 'undefined') {
+                    continue;
+                }
                 if (typeof airportMarkers[data[i].Name] !== 'undefined') {
                     airportMarkers[data[i].Name].setIcon(new BMap.Icon('img/icon/airport-atc.png', new BMap.Size(20, 20)));
                 }
