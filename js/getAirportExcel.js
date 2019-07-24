@@ -1,7 +1,7 @@
 var componentAirport = document.querySelector('#component-airport'),
     componentAirportCloseBar = document.querySelector('#component-airport-closeBar');
 
-function getAirportExcelFn() {
+function getAirportExcelFn(isFirst) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", 'data/airport.csv', false);
     xmlhttp.send();
@@ -9,16 +9,42 @@ function getAirportExcelFn() {
     var data = xmlhttp.responseText,
         thisData,
         markersObj = {},
-        airportIcon = new BMap.Icon('img/icon/airport.png', new BMap.Size(20, 20));
+        airportIcon = new BMap.Icon('img/icon/airport.png', new BMap.Size(20, 20)),
+        airportATCIcon = new BMap.Icon('img/icon/airport-atc.png', new BMap.Size(20, 20));
 
     data = data.split('\n');
     data.splice(0, 1);
 
     for (var i = 0; i < data.length; i++) {
         thisData = data[i].split(',');
-        var mk = new BMap.Marker(new BMap.Point(thisData[3], thisData[2]), {
-            icon: airportIcon
-        })
+        var mk;
+        if (isFirst) {
+            mk = new BMap.Marker(new BMap.Point(thisData[3], thisData[2]), {
+                icon: airportIcon
+            })
+        } else {
+            var nowServerDetail;
+            switch (nowServer) {
+                case 'cs':
+                    nowServerDetail = 'Casual Server';
+                    break;
+                case 'ts':
+                    nowServerDetail = 'Training Server';
+                    break;
+                case 'es':
+                    nowServerDetail = 'Expert Server';
+                    break;
+            }
+            if (typeof atc[nowServerDetail][thisData[0]] === 'undefined') {
+                mk = new BMap.Marker(new BMap.Point(thisData[3], thisData[2]), {
+                    icon: airportIcon
+                })
+            } else {
+                mk = new BMap.Marker(new BMap.Point(thisData[3], thisData[2]), {
+                    icon: airportATCIcon
+                })
+            }
+        }
         mk.onclick = function() {
             document.querySelector('#component-airport-index-airportName').innerText = this.info.name;
             document.querySelector('#component-airport-index-airportCode').innerText = this.info.code;
@@ -118,6 +144,6 @@ if (localStorage.displayAirport === undefined || localStorage.displayAirport ===
     //隐藏
     localStorage.displayAirport = false;
 } else {
-    getAirportExcelFn();
+    getAirportExcelFn(true);
     document.querySelector('#toggleAirport-btn').classList.add('layui-this');
 }
