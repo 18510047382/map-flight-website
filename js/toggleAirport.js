@@ -16,7 +16,7 @@ document.querySelector('#toggleAirport-btn').onclick = function() {
             localStorage.displayAirport = true;
             document.querySelector('#toggleAirport-btn').classList.add('layui-this');
             if (typeof window.airportMarkers === 'undefined') {
-                getAirportExcelFn();
+                getAirportExcelFn(false);
             } else {
                 for (let i in airportMarkers) {
                     airportMarkers[i].show();
