@@ -12,6 +12,8 @@
     <link rel="icon" type="image/x-icon" href="img/logo.ico">
     <link rel="apple-touch-icon" href="img/logo-iosapp.png">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/component-airport.css">
+    <link rel="stylesheet" type="text/css" href="css/component-plane.css">
     <link rel="stylesheet" type="text/css" href="css/bMapPatch.css">
     <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
     <script type="text/javascript" src="//js.users.51.la/20042943.js"></script>
@@ -27,7 +29,62 @@
     <title>Map-Flight | Infinite Flight 实时航班系统</title>
 </head>
 
-<!-- component -->
+<!-- component-airport -->
+<div style="display: none;" id="component-airport-closeBar">
+    <i class="layui-icon layui-icon-down"></i>
+</div>
+<div style="display: none;" id="component-airport">
+    <div id="component-airport-menu">
+        <div id="component-airport-menu-indexBtn" class="layui-col-xs6 component-airport-menu-act">
+            <svg viewBox="0 0 24 24">
+                <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"></path>
+            </svg>
+        </div>
+        <div id="component-airport-menu-infoBtn" class="layui-col-xs6">
+            <svg viewBox="0 0 24 24">
+                <path d="M19.07 4.93l-1.41 1.41C19.1 7.79 20 9.79 20 12c0 4.42-3.58 8-8 8s-8-3.58-8-8c0-4.08 3.05-7.44 7-7.93v2.02C8.16 6.57 6 9.03 6 12c0 3.31 2.69 6 6 6s6-2.69 6-6c0-1.66-.67-3.16-1.76-4.24l-1.41 1.41C15.55 9.9 16 10.9 16 12c0 2.21-1.79 4-4 4s-4-1.79-4-4c0-1.86 1.28-3.41 3-3.86v2.14c-.6.35-1 .98-1 1.72 0 1.1.9 2 2 2s2-.9 2-2c0-.74-.4-1.38-1-1.72V2h-1C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10c0-2.76-1.12-5.26-2.93-7.07z"></path>
+            </svg>
+        </div>
+    </div>
+    <div id="component-airport-index" class="component-airport-window">
+        <div style="padding: 16px; position: relative;">
+            <span id="component-airport-index-airportName" style="font-size: 22px; color: rgba(0, 0, 0, 0.87); display: block; line-height: 36px; overflow: auto;">Loading...</span>
+            <span style="font-size: 14px; color: rgba(0, 0, 0, 0.54); display: block;">
+                <div>
+                    <strong id="component-airport-index-airportCode">Loading...</strong>
+                </div>
+            </span>
+        </div>
+        <hr>
+        <div class="component-airport-index-info">
+            <svg viewBox="0 0 24 24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); height: 36px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-right: 24px; float: left;">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+            </svg>
+            <div class="component-airport-index-info-content">
+                <span id="component-airport-index-info-locationLon" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
+                <span id="component-airport-index-info-locationLat" style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">Loading...</span>
+            </div>
+        </div>
+        <hr>
+        <div class="component-airport-index-info">
+            <svg viewBox="0 0 24 24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); height: 36px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-right: 24px; float: left;">
+                <path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"></path>
+            </svg>
+            <div class="component-airport-index-info-content">
+                <span id="component-airport-index-info-attitudeFt" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
+                <span id="component-airport-index-info-attitudeMeter" style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <div id="component-airport-info" style="display: none;" class="component-airport-window">
+        <div id="component-airport-info-ok"></div>
+        <div id="component-airport-info-error">
+            此机场当前暂无ATC
+        </div>
+    </div>
+</div>
+
+<!-- component-plane -->
 <div style="display: none;" id="component-plane-closeBar">
     <i class="layui-icon layui-icon-down"></i>
 </div>
@@ -409,9 +466,6 @@
             <!-- ads -->
             <div id="ads">
                 <a href="#" id="ads-img"></a>
-                <div>
-
-                </div>
                 <button>关闭</button>
             </div>
         </div>
@@ -421,10 +475,12 @@
     <script type="text/javascript" src="js/search.js"></script>
     <script type="text/javascript" src="js/createMap.js"></script>
     <script type="text/javascript" src="js/getAirportExcel.js"></script>
+    <script type="text/javascript" src="js/getATC.js"></script>
     <script type="text/javascript" src="js/leftnav.js"></script>
     <script type="text/javascript" src="js/myPlane.js"></script>
     <script type="text/javascript" src="js/showQQ.js"></script>
     <script type="text/javascript" src="js/getPlane.js"></script>
+    <script type="text/javascript" src="js/handleComponentAirport.js"></script>
     <script type="text/javascript" src="js/handleComponentPlane.js"></script>
     <script type="text/javascript" src="js/serverChoose.js"></script>
     <!-- <script type="text/javascript" src="js/openNews.js"></script> -->
@@ -464,6 +520,6 @@
             var settingBtn = document.querySelector('#nav-me-childnav #setting-btn').onclick = triggerLeftnav;
         })
     </script>
-    </body>
+</body>
 
 </html>
