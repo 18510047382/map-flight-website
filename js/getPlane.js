@@ -115,6 +115,7 @@
         getServerData(serverName, function(data) {
             getATC(serverName, data);
             getFlights(data.Id, function(flights) {
+                console.log(3493049)
                 if (firstCallback) {
                     firstCallback();
                 }
@@ -339,7 +340,13 @@
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                callback(JSON.parse(xmlhttp.responseText));
+                xmlhttp.responseText = JSON.parse(xmlhttp.responseText);
+                if ((!Array.isArray(xmlhttp.responseText)) || xmlhttp.responseText.length === 0) {
+                    alert('Map-Flight已经成功连接到了后台，但是获取的航班数据似乎有一些问题（偶尔有一次是很正常的，因为Live API随时可能返回不正确的数据）。在你关闭弹窗之后，Map-Flight将尝试刷新页面并重新获取数据，如果连续3次都不能获取正确的数据，请尝试联系网站管理员（QQ：17310415421）');
+                    window.location.reload();
+                    return;
+                }
+                callback(xmlhttp.responseText);
             }
         }
         xmlhttp.open("GET", 'https://' + backendLink + ':8000/getAllFlights?id=' + sessionId, true);
