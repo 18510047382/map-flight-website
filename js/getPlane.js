@@ -340,15 +340,15 @@
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                xmlhttp.responseText = JSON.parse(xmlhttp.responseText);
-                if ((!Array.isArray(xmlhttp.responseText)) || xmlhttp.responseText.length === 0) {
+                var flightData = JSON.parse(xmlhttp.responseText);
+                if ((!Array.isArray(flightData)) || flightData.length === 0) {
 
                     alert('Map-Flight已经成功连接到了后台，但是获取的航班数据似乎有一些问题（偶尔有一次是很正常的，因为Live API随时可能返回不正确的数据）。在你关闭弹窗之后，Map-Flight将尝试刷新页面并重新获取数据，如果连续3次都不能获取正确的数据，请尝试联系网站管理员（QQ：17310415421）');
-                    console.log((!Array.isArray(xmlhttp.responseText)), xmlhttp.responseText.length === 0)
+                    console.log((!Array.isArray(flightData)), flightData.length === 0)
                     //window.location.reload();
                     return;
                 }
-                callback(xmlhttp.responseText);
+                callback(flightData);
             }
         }
         xmlhttp.open("GET", 'https://' + backendLink + ':8000/getAllFlights?id=' + sessionId, true);
