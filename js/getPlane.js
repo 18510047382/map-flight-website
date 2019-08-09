@@ -115,7 +115,6 @@
         getServerData(serverName, function(data) {
             getATC(serverName, data);
             getFlights(data.Id, function(flights) {
-                console.log(3493049)
                 if (firstCallback) {
                     firstCallback();
                 }
