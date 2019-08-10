@@ -178,10 +178,12 @@ function getAirportExcelFn(isFirst) {
         }
 
         markersObj[thisData[0]] = mk;
+        mk.hide();
         map.addOverlay(mk);
     }
 
     window.airportMarkers = markersObj;
+    getBounds();
 }
 
 if (localStorage.displayAirport === undefined || localStorage.displayAirport === 'false') {
@@ -190,4 +192,51 @@ if (localStorage.displayAirport === undefined || localStorage.displayAirport ===
 } else {
     getAirportExcelFn(true);
     document.querySelector('#toggleAirport-btn').classList.add('layui-this');
+}
+
+//设置地图优化
+//地图绑定拖拽事件
+map.addEventListener('dragend', getBounds);
+//地图绑定滚动事件
+map.addEventListener('zoomend', getBounds);
+
+function getBounds() {
+    if (typeof airportMarkers === 'undefined' || airportMarkers.length === 0) {
+        return;
+    }
+
+    var bounds = map.getBounds(),
+        SouthWest = bounds.getSouthWest(), //可视区域左下角
+        NorthEast = bounds.getNorthEast(); //可视区域右上角
+
+    var data = getBoundsList(SouthWest.lng, NorthEast.lng, SouthWest.lat, NorthEast.lat);
+
+    for (var i = 0, lengths = data.listhide.length; i < lengths; i++) {
+        data.listhide[i].hide();
+    }
+}
+
+function getBoundsList(smlng, bglng, smlat, bglat) {
+    var listhide = [], //隐藏的数据
+        listshow = []; //显示的数据
+
+    for (var i in airportMarkers) {
+        var _point = airportMarkers[i].info;
+        if (smlng < _point.lon && _point.lon < bglng && smlat < _point.lat && _point.lat < bglat && localStorage.displayAirport === 'true') {
+            //显示
+            listshow.push(airportMarkers[i]);
+            //如果之前被隐藏则显示
+            if (!airportMarkers[i].isVisible()) {
+                airportMarkers[i].show();
+            }
+        } else {
+            //不显示
+            listhide.push(airportMarkers[i]);
+        }
+    }
+
+    return {
+        listshow: listshow,
+        listhide: listhide
+    }
 }
