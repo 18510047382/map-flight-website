@@ -15,6 +15,10 @@
         width: 100% !important;
     }
 
+    #component-airport-weather {
+        width: 100% !important;
+    }
+
     #component-airport-info {
         width: 100% !important;
     }
@@ -100,6 +104,13 @@
     background-color: rgb(224, 224, 224);
 }
 
+#component-airport-weather hr {
+    margin: -1px 0px 0px;
+    height: 1px;
+    border: none;
+    background-color: rgb(224, 224, 224);
+}
+
 #component-airport-info hr {
     margin: -1px 0px 0px;
     height: 1px;
@@ -121,6 +132,32 @@
     white-space: normal;
     padding-right: 0px;
     padding-left: 50px;
+}
+
+.component-airport-weather-info {
+    padding: 16px;
+    font-weight: 500;
+    box-sizing: border-box;
+    position: relative;
+    white-space: nowrap;
+}
+
+.component-airport-weather-info-content {
+    display: block;
+    vertical-align: top;
+    white-space: normal;
+    padding-right: 0px;
+    padding-left: 50px;
+}
+
+#component-airport-weather-error {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 48px;
+    padding-left: 16px;
+    width: 100%;
 }
 
 #component-airport-info-error {
