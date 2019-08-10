@@ -46,6 +46,8 @@ function getAirportExcelFn(isFirst) {
             }
         }
         mk.onclick = function() {
+            var layerLoading = layer.load(2);
+
             document.querySelector('#component-airport-index-airportName').innerText = this.info.name;
             document.querySelector('#component-airport-index-airportCode').innerText = this.info.code;
             document.querySelector('#component-airport-index-info-locationLon').innerText = this.info.lon;
@@ -118,11 +120,53 @@ function getAirportExcelFn(isFirst) {
                 document.querySelector('#component-airport-info-error').style.display = 'none';
             }
 
-            //显示面板
-            setTimeout(function() {
-                componentAirport.classList.add('show');
-                componentAirportCloseBar.classList.add('show-component-airport-closeBar')
-            }, 0);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        var airportWeatherData = JSON.parse(xmlhttp.responseText);
+
+                        console.log(airportWeatherData);
+
+                        if (typeof airportWeatherData.error !== 'undefined') {
+                            document.querySelector('#component-airport-weather-ok').style.display = 'none';
+                            document.querySelector('#component-airport-weather-error').style.display = 'block';
+                        } else {
+                            //ok
+                            document.querySelector('#component-airport-weather-ok').style.display = 'block';
+                            document.querySelector('#component-airport-weather-error').style.display = 'none';
+
+                            document.querySelector('#component-airport-weather-airportName').innerText = this.name;
+
+                            document.querySelector('#component-airport-weather-info-visibility').innerText = airportWeatherData.visibility.value + 'M';
+
+                            document.querySelector('#component-airport-weather-info-temperature').innerText = airportWeatherData.temperature.value + 'C°';
+
+                            document.querySelector('#component-airport-weather-info-altimeter').innerText = airportWeatherData.altimeter.value + 'hPa';
+
+                            document.querySelector('#component-airport-weather-info-windSpeed').innerText = airportWeatherData.wind_speed.value + 'M/S';
+
+                            document.querySelector('#component-airport-weather-info-windDirection').innerText = airportWeatherData.wind_direction.value + '°';
+                        }
+
+                        //显示面板
+                        componentAirport.classList.add('show');
+                        componentAirportCloseBar.classList.add('show-component-airport-closeBar');
+                    } else {
+                        document.querySelector('#component-airport-weather-ok').style.display = 'none';
+                        document.querySelector('#component-airport-weather-error').style.display = 'block';
+
+                        //显示面板
+                        componentAirport.classList.add('show');
+                        componentAirportCloseBar.classList.add('show-component-airport-closeBar');
+                    }
+                    layer.close(layerLoading);
+                }
+            }.bind(this.info)
+
+            xmlhttp.open("GET", 'https://avwx.rest/api/metar/' + this.info.code + '?options=&format=json&onfail=cache', true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send();
         }
 
         mk.info = {
