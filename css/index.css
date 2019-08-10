@@ -136,12 +136,7 @@ main {
 }
 
 #nav-me-childnav {
-    left: -170px;
-    height: auto;
-    width: 250px;
-    box-sizing: border-box;
-    padding: 5px 20px;
-    padding-bottom: 20px;
+    display: none !important;
 }
 
 #left-nav-bottom {
