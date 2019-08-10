@@ -35,12 +35,17 @@
 </div>
 <div style="display: none;" id="component-airport">
     <div id="component-airport-menu">
-        <div id="component-airport-menu-indexBtn" class="layui-col-xs6 component-airport-menu-act">
+        <div id="component-airport-menu-indexBtn" class="layui-col-xs4 component-airport-menu-act">
             <svg viewBox="0 0 24 24">
                 <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"></path>
             </svg>
         </div>
-        <div id="component-airport-menu-infoBtn" class="layui-col-xs6">
+        <div id="component-airport-menu-weatherBtn" class="layui-col-xs4">
+            <svg viewBox="0 0 24 24">
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.61 5.64 5.36 8.04 2.35 8.36 0 10.9 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4h2c0-2.76-1.86-5.08-4.4-5.78C8.61 6.88 10.2 6 12 6c3.03 0 5.5 2.47 5.5 5.5v.5H19c1.65 0 3 1.35 3 3s-1.35 3-3 3z"></path>
+            </svg>
+        </div>
+        <div id="component-airport-menu-infoBtn" class="layui-col-xs4">
             <svg viewBox="0 0 24 24">
                 <path d="M19.07 4.93l-1.41 1.41C19.1 7.79 20 9.79 20 12c0 4.42-3.58 8-8 8s-8-3.58-8-8c0-4.08 3.05-7.44 7-7.93v2.02C8.16 6.57 6 9.03 6 12c0 3.31 2.69 6 6 6s6-2.69 6-6c0-1.66-.67-3.16-1.76-4.24l-1.41 1.41C15.55 9.9 16 10.9 16 12c0 2.21-1.79 4-4 4s-4-1.79-4-4c0-1.86 1.28-3.41 3-3.86v2.14c-.6.35-1 .98-1 1.72 0 1.1.9 2 2 2s2-.9 2-2c0-.74-.4-1.38-1-1.72V2h-1C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10c0-2.76-1.12-5.26-2.93-7.07z"></path>
             </svg>
@@ -74,6 +79,78 @@
                 <span id="component-airport-index-info-attitudeFt" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
                 <span id="component-airport-index-info-attitudeMeter" style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">Loading...</span>
             </div>
+        </div>
+    </div>
+    <div id="component-airport-weather" style="display: none;" class="component-airport-window">
+        <div id="component-airport-weather-ok">
+            <div style="padding: 16px; position: relative;">
+                <span id="component-airport-weather-airportName" style="font-size: 22px; color: rgba(0, 0, 0, 0.87); display: block; line-height: 36px; overflow: auto;">Loading...</span>
+                <span style="font-size: 14px; color: rgba(0, 0, 0, 0.54); display: block;">
+                    <div>
+                        <strong>实时天气</strong>
+                    </div>
+                </span>
+            </div>
+            <hr>
+            <div class="component-airport-weather-info">
+                <svg t="1565392631278" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1589" width="24" height="24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-top: 5px; float: left;">
+                    <path d="M512 192C298.666667 192 115.2 324.266667 42.666667 512c72.533333 187.733333 256 320 469.333333 320 213.333333 0 396.8-132.266667 469.333333-320C908.8 324.266667 725.333333 192 512 192zM512 725.333333c-119.466667 0-213.333333-93.866667-213.333333-213.333333s93.866667-213.333333 213.333333-213.333333c119.466667 0 213.333333 93.866667 213.333333 213.333333S631.466667 725.333333 512 725.333333zM512 384c-72.533333 0-128 55.466667-128 128s55.466667 128 128 128c72.533333 0 128-55.466667 128-128S584.533333 384 512 384z"
+                        p-id="1590"></path>
+                </svg>
+                <div class="component-airport-weather-info-content">
+                    <span id="component-airport-weather-info-visibility" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
+                    <span style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">能见度</span>
+                </div>
+            </div>
+            <hr>
+            <div class="component-airport-weather-info">
+                <svg t="1565392631278" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1589" width="24" height="24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-top: 5px; float: left;">
+                    <path d="M512 128a192 192 0 0 0-192 192v384a192 192 0 1 0 384 0V320a192 192 0 0 0-192-192z m128 288v32a32 32 0 0 0 0 64v32a32 32 0 0 0 0 64v96a128 128 0 1 1-256 0v-96a32 32 0 0 0 0-64v-32a32 32 0 0 0 0-64v-32a32 32 0 1 0 0-64v-32a128 128 0 1 1 256 0v32a32 32 0 1 0 0 64z m-160 232.576a64 64 0 1 0 64 0V320a32 32 0 1 0-64 0v328.576z"
+                        p-id="2502"></path>
+                </svg>
+                <div class="component-airport-weather-info-content">
+                    <span id="component-airport-weather-info-temperature" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
+                    <span style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">温度</span>
+                </div>
+            </div>
+            <hr>
+            <div class="component-airport-weather-info">
+                <svg t="1565392631278" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1589" width="24" height="24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-top: 5px; float: left;">
+                    <path d="M470.29427317 586.87598978a35.08766599 35.08766599 0 0 1-35.08766599-35.08766596V230.92258155a35.08766599 35.08766599 0 0 1 70.17533257 0V551.78832382a35.08766599 35.08766599 0 0 1-35.08766659 35.08766597zM610.67783243 665.02280113a35.08766599 35.08766599 0 0 1-35.08766598-35.087666V299.21195178a35.08766599 35.08766599 0 0 1 70.17533255 0v330.72318335a35.08766599 35.08766599 0 0 1-35.08766658 35.08766599zM751.05042698 586.47028857a35.08766599 35.08766599 0 0 1-35.08766599-35.08766597V230.57170512a35.08766599 35.08766599 0 1 1 70.17533197 1e-8v320.81091747a35.08766599 35.08766599 0 0 1-35.08766598 35.08766598z"
+                        p-id="1587"></path>
+                    <path d="M841.12704497 675.61489043a124.9998108 124.9998108 0 0 1-124.87919708-124.86823175 35.08766599 35.08766599 0 0 1 70.17533254 1e-8 54.70386453 54.70386453 0 1 0 109.39676435 0 35.08766599 35.08766599 0 0 1 70.17533196 0 124.9998108 124.9998108 0 0 1-124.86823176 124.86823174zM380.51370737 675.61489043A124.9998108 124.9998108 0 0 1 255.6345109 550.74665868a35.08766599 35.08766599 0 0 1 70.17533195 0 54.70386453 54.70386453 0 1 0 109.39676434 0 35.08766599 35.08766599 0 0 1 70.17533256 0 124.9998108 124.9998108 0 0 1-124.86823238 124.86823175zM961.62028352 806.46995556H258.04678756a35.08766599 35.08766599 0 0 1 0-70.17533255h703.57349595a35.08766599 35.08766599 0 0 1 0 70.17533255z"
+                        p-id="1588"></path>
+                </svg>
+                <div class="component-airport-weather-info-content">
+                    <span id="component-airport-weather-info-altimeter" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
+                    <span style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">气压</span>
+                </div>
+            </div>
+            <hr>
+            <div class="component-airport-weather-info">
+                <svg t="1565392631278" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1589" width="24" height="24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-top: 5px; float: left;">
+                    <path d="M862.016 384c-52.992 0-96 43.008-96 96 0 11.296 2.336 21.92 5.888 32L158.016 512c-17.664 0-32 14.336-32 32s14.336 32 32 32l704 0c52.992 0 96-43.008 96-96S915.008 384 862.016 384zM158.016 448l384 0c52.992 0 96-43.008 96-96s-43.008-96-96-96-96 43.008-96 96c0 11.296 2.336 21.92 5.888 32L158.016 384c-17.664 0-32 14.336-32 32S140.32 448 158.016 448zM670.016 640c-1.888 0-3.68 0.416-5.568 0.576-1.248-0.096-2.304-0.576-3.552-0.576L167.168 640C144.416 640 126.016 654.336 126.016 672s18.432 32 41.152 32l412.704 0c-3.552 10.08-5.888 20.736-5.888 32 0 52.992 43.008 96 96 96s96-43.008 96-96S723.008 640 670.016 640z"
+                        p-id="2643"></path>
+                </svg>
+                <div class="component-airport-weather-info-content">
+                    <span id="component-airport-weather-info-windSpeed" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
+                    <span style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">风速</span>
+                </div>
+            </div>
+            <hr>
+            <div class="component-airport-weather-info">
+                <svg t="1565392631278" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1589" width="24" height="24" style="display: inline-block; fill: rgba(0, 0, 0, 0.87); user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-top: 5px; float: left;">
+                    <path d="M550.412782 267.16662h59.924886v276.532575h-59.924886zM365.732149 231.327009v17.98997a17.849641 17.849641 0 0 0 17.849641 17.849641h391.348545v-53.689252H383.58179a17.849641 17.849641 0 0 0-17.849641 17.849641z m586.640037-8.058529l-150.61112-87.690684c-11.900224-6.928945-26.830732 1.656167-26.830731 15.422356v175.203526c0 13.763411 14.918004 22.348523 26.815448 15.433471l150.61112-87.518399c11.837701-6.87198 11.844648-23.964397 0.013894-30.851659zM63.83744 78.056575l55.853939 154.584807a17.849641 17.849641 0 0 1 0 12.132254L63.840219 399.29731C59.63589 410.933548 68.255737 423.211688 80.628357 423.211688h44.228817a17.849641 17.849641 0 0 0 8.974144-2.420337l286.544602-166.657317c11.833532-6.881705 11.833532-23.974122 0-30.858607L133.831318 56.563923a17.849641 17.849641 0 0 0-8.976923-2.421726H80.625578c-12.371231 0-20.992467 12.27953-16.788138 23.914378z m437.383583 896.359855V561.548835A17.849641 17.849641 0 0 1 519.08039 543.699195h122.598007a17.849641 17.849641 0 0 1 17.849641 17.84964v412.867595a17.849641 17.849641 0 0 1-17.849641 17.84964H519.08039a17.849641 17.849641 0 0 1-17.855198-17.84964z m0 17.84964"
+                        p-id="3873"></path>
+                </svg>
+                <div class="component-airport-weather-info-content">
+                    <span id="component-airport-weather-info-windDirection" style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 15px;">Loading...</span>
+                    <span style="color: rgba(0, 0, 0, 0.54); display: block; font-size: 14px;">风向</span>
+                </div>
+            </div>
+        </div>
+        <div id="component-airport-weather-error">
+            当前机场暂无天气状态
         </div>
     </div>
     <div id="component-airport-info" style="display: none;" class="component-airport-window">
@@ -382,45 +459,14 @@
             </ul>
             <ul class="layui-nav layui-layout-right">
                 <li id="top-nav-me" class="layui-nav-item">
-                    <a href="javascript:;">
+                    <a href="#">
+                        <!--<a href="me.html">-->
                         <div size="33" style="position: relative; top: 12px; color: rgb(255, 255, 255); background-color: rgb(188, 188, 188); user-select: none; display: inline-block; text-align: center; line-height: 33px; font-size: 16.5px; border-radius: 50%; height: 33px; width: 33px;">
                             <svg viewBox="0 0 24 24" style="display: inline-block; fill: rgb(255, 255, 255); height: 19.8px; width: 19.8px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; color: rgb(255, 255, 255); font-size: 19.8px; margin: 6.6px;">
                                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                            </svg></div>
+                            </svg>
+                        </div>
                     </a>
-                    <dl id="nav-me-childnav" class="layui-nav-child">
-                        <dd lay-unselect>
-                            <h4 style="box-sizing: border-box; color: rgba(0, 0, 0, 0.54); font-size: 14px; font-weight: 500; line-height: 48px; padding-left: 2px; width: 100%;">My:
-                                <button id="top-nav-me-close-btn" style="position: absolute; right: 10px; top: 12px;" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">
-                                    <i style="font-size: 15px; position: relative; top: 1px; left: 1px" class="layui-icon layui-icon-close-fill"></i>
-                                    <span style="font-size: 10px; position: relative; right: 2px">关闭</span>
-                                </button>
-                            </h4>
-                            <button id="setting-btn" class="layui-btn layui-btn-primary layui-btn-fluid">
-                                <img style="position: relative; bottom: 2px;" height="25px" src="img/icon/setting.png" alt="tieba logo">
-                                <span>我的设置</span>
-                            </button>
-                            <br>
-                            <button id="donate-btn" style="margin-top: 15px;" class="layui-btn layui-btn-fluid">
-                                <img style="position: relative; bottom: 2px;" height="25px" src="img/icon/donate.png" alt="tieba logo">
-                                <span>赞助我们</span>
-                            </button>
-                            <hr>
-                            <h4 style="box-sizing: border-box; color: rgba(0, 0, 0, 0.54); font-size: 14px; font-weight: 500; line-height: 28px; padding-left: 2px; width: 100%;">Follow us!</h4>
-                            <a style="padding: 0; margin: 10px 0;" href="https://tieba.baidu.com/p/6131198362" target="_blank">
-                                <button class="layui-btn layui-btn-primary layui-btn-fluid">
-                                    <img style="position: relative; bottom: 1px;" height="28px" src="img/icon/tieba.png" alt="tieba logo">
-                                    <span>百度贴吧</span>
-                                </button>
-                            </a>
-                            <a id="showqq-btn" style="padding: 0; margin: 10px 0" href="#">
-                                <button class="layui-btn layui-btn-primary layui-btn-fluid">
-                                    <img style="position: relative; bottom: 2px;" height="28px" src="img/icon/qq.png" alt="tieba logo">
-                                    <span>站长 QQ</span>
-                                </button>
-                            </a>
-                        </dd>
-                    </dl>
                 </li>
             </ul>
         </div>
@@ -470,7 +516,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="js/setDonateBtn.js"></script>
     <script type="text/javascript" src="js/getAircraftExcel.js"></script>
     <script type="text/javascript" src="js/search.js"></script>
     <script type="text/javascript" src="js/createMap.js"></script>
@@ -478,14 +523,12 @@
     <script type="text/javascript" src="js/getATC.js"></script>
     <script type="text/javascript" src="js/leftnav.js"></script>
     <script type="text/javascript" src="js/myPlane.js"></script>
-    <script type="text/javascript" src="js/showQQ.js"></script>
     <script type="text/javascript" src="js/getPlane.js"></script>
     <script type="text/javascript" src="js/handleComponentAirport.js"></script>
     <script type="text/javascript" src="js/handleComponentPlane.js"></script>
     <script type="text/javascript" src="js/serverChoose.js"></script>
-    <!--<script type="text/javascript" src="js/openNews.js"></script>-->
+    <!-- <script type="text/javascript" src="js/openNews.js"></script> -->
     <script type="text/javascript" src="js/toggleAirport.js"></script>
-    <script type="text/javascript" src="js/closeTopNavRightBtn.js"></script>
     <script type="text/javascript" src="js/handleAdsBtn.js"></script>
     <script>
         var planeLoadingLayer;
@@ -517,7 +560,6 @@
         })
         layui.use('element', function() {
             var element = layui.element;
-            var settingBtn = document.querySelector('#nav-me-childnav #setting-btn').onclick = triggerLeftnav;
         })
     </script>
 </body>
