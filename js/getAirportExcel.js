@@ -183,7 +183,7 @@ function getAirportExcelFn(isFirst) {
     }
 
     window.airportMarkers = markersObj;
-    getBounds();
+    getBoundsAirport();
 }
 
 if (localStorage.displayAirport === undefined || localStorage.displayAirport === 'false') {
@@ -196,11 +196,11 @@ if (localStorage.displayAirport === undefined || localStorage.displayAirport ===
 
 //设置地图优化
 //地图绑定拖拽事件
-map.addEventListener('dragend', getBounds);
+map.addEventListener('dragend', getBoundsAirport);
 //地图绑定滚动事件
-map.addEventListener('zoomend', getBounds);
+map.addEventListener('zoomend', getBoundsAirport);
 
-function getBounds() {
+function getBoundsAirport() {
     if (typeof airportMarkers === 'undefined' || airportMarkers.length === 0) {
         return;
     }
@@ -209,14 +209,14 @@ function getBounds() {
         SouthWest = bounds.getSouthWest(), //可视区域左下角
         NorthEast = bounds.getNorthEast(); //可视区域右上角
 
-    var data = getBoundsList(SouthWest.lng, NorthEast.lng, SouthWest.lat, NorthEast.lat);
+    var data = getBoundsListAirport(SouthWest.lng, NorthEast.lng, SouthWest.lat, NorthEast.lat);
 
     for (var i = 0, lengths = data.listhide.length; i < lengths; i++) {
         data.listhide[i].hide();
     }
 }
 
-function getBoundsList(smlng, bglng, smlat, bglat) {
+function getBoundsListAirport(smlng, bglng, smlat, bglat) {
     var listhide = [], //隐藏的数据
         listshow = []; //显示的数据
 
