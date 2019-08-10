@@ -20,6 +20,7 @@
                             map.removeOverlay(planeList[i]);
                         }
                         planeList = [];
+                        planeListObj = {};
                         //关闭加载层
                         layer.close(planeLoadingLayer);
                     }, function() {}, function() {
@@ -34,6 +35,7 @@
                             map.removeOverlay(planeList[i]);
                         }
                         planeList = [];
+                        planeListObj = {};
                         //关闭加载层
                         layer.close(planeLoadingLayer);
                     }, function() {}, function() {
@@ -48,6 +50,7 @@
                             map.removeOverlay(planeList[i]);
                         }
                         planeList = [];
+                        planeListObj = {};
                         //关闭加载层
                         layer.close(planeLoadingLayer);
                     }, function() {}, function() {
