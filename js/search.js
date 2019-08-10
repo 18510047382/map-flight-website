@@ -19,13 +19,18 @@ function searchFlight() {
         area: ['800px', '350px']
     }, function(value, index, elem) {
         layer.close(index);
-        
+
         if (typeof planeListObj[value] === 'undefined') {
             layer.msg('没有此航班！');
             return;
         }
 
-        map.panTo(new BMap.Point(planeListObj[value].info.lon, planeListObj[value].info.lat));
+        map.panTo(new BMap.Point(planeListObj[value].info.lon, planeListObj[value].info.lat), {
+            noAnimation: true
+        })
+
+        getBoundsPlane();
+        getBoundsAirport();
     })
 }
 
@@ -61,5 +66,10 @@ function toPlace(placeArr) {
     }
 
     map.setZoom(12);
-    map.panTo(new BMap.Point(placeArr.location.lng, placeArr.location.lat));
+    map.panTo(new BMap.Point(placeArr.location.lng, placeArr.location.lat), {
+        noAnimation: true
+    })
+
+    getBoundsPlane();
+    getBoundsAirport();
 }
