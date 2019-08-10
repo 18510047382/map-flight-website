@@ -216,7 +216,11 @@
                         document.querySelector('#component-plane-index img').src = 'https://cdn.liveflightapp.com/aircraft-images/' + this.flight.AircraftID + '/' + this.flight.LiveryID + '.jpg';
                         //index页面主按钮的点击事件
                         document.querySelector('#component-plane-index-operationBoard-operationBar-toFlightLocationOnMapBtn').onclick = function() {
-                            map.panTo(new BMap.Point(this.Longitude, this.Latitude));
+                            map.panTo(new BMap.Point(this.Longitude, this.Latitude), {
+                                noAnimation: true
+                            })
+                            getBoundsPlane();
+                            getBoundsAirport();
                         }.bind(this.flight);
                         document.querySelector('#component-plane-index-operationBoard-operationBar-toFlightPlanBtn').onclick = function() {
                             document.querySelector('#component-plane-menu-infoBtn').click();
@@ -312,7 +316,7 @@
                 map.addOverlay(mk);
             }
         })
-        getBounds();
+        getBoundsPlane();
         return userCount;
     }
 
@@ -410,11 +414,11 @@
 
     //设置地图优化
     //地图绑定拖拽事件
-    map.addEventListener('dragend', getBounds);
+    map.addEventListener('dragend', getBoundsPlane);
     //地图绑定滚动事件
-    map.addEventListener('zoomend', getBounds);
+    map.addEventListener('zoomend', getBoundsPlane);
 
-    function getBounds() {
+    function getBoundsPlane() {
         if (planeList.length === 0) {
             return;
         }
@@ -423,14 +427,14 @@
             SouthWest = bounds.getSouthWest(), //可视区域左下角
             NorthEast = bounds.getNorthEast(); //可视区域右上角
 
-        var data = getBoundsList(SouthWest.lng, NorthEast.lng, SouthWest.lat, NorthEast.lat);
+        var data = getBoundsListPlane(SouthWest.lng, NorthEast.lng, SouthWest.lat, NorthEast.lat);
 
         for (var i = 0, lengths = data.listhide.length; i < lengths; i++) {
             data.listhide[i].hide();
         }
     }
 
-    function getBoundsList(smlng, bglng, smlat, bglat) {
+    function getBoundsListPlane(smlng, bglng, smlat, bglat) {
         var listhide = [], //隐藏的数据
             listshow = []; //显示的数据
 
