@@ -25,7 +25,7 @@ function searchFlight() {
             return;
         }
 
-        map.panTo(new BMap.Point(planeListObj[value].info.lon, planeListObj[value].info.lat), {
+        map.panTo(planeListObj[value].getPosition(), {
             noAnimation: true
         })
 
