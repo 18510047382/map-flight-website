@@ -3,7 +3,7 @@
     window.planeList = [];
     window.planeListObj = {};
     window.planePolyLine = undefined;
-    window.planePolyLineTrail = undefined;
+    window.planePolyLineTrail = [];
 
     var flightPlanObj = {},
         componentPlane = document.querySelector('#component-plane'),
@@ -173,10 +173,10 @@
                     var loadPlaneDataLayer = layer.load(2),
                         finishLoadCount = 0;
 
-                    if (planePolyLineTrail) {
-                        map.removeOverlay(planePolyLineTrail);
-                        planePolyLineTrail = undefined;
+                    for (var i = 0; i < planePolyLineTrail.length; i++) {
+                        map.removeOverlay(planePolyLineTrail[i]);
                     }
+                    planePolyLineTrail = [];
 
                     if (planePolyLine) {
                         map.removeOverlay(planePolyLine);
@@ -195,21 +195,48 @@
                             layer.close(loadPlaneDataLayer);
                         }
 
-                        console.log(this.mk)
+                        var newTrailArray = [],
+                            lastLevel = null,
+                            thisLevel = null;
 
-                        var newTrailArray = [];
                         for (var i = 0; i < planeTrail.length; i++) {
+                            planeTrail[i].Altitude = parseInt(planeTrail[i].Altitude);
+                            if (planeTrail[i].Altitude <= 1000) {
+                                thisLevel = 0;
+                            } else if (planeTrail[i].Altitude > 1000 && planeTrail[i].Altitude <= 3000) {
+                                thisLevel = 1;
+                            } else if (planeTrail[i].Altitude > 3000 && planeTrail[i].Altitude <= 6000) {
+                                thisLevel = 2;
+                            } else if (planeTrail[i].Altitude > 6000 && planeTrail[i].Altitude <= 10000) {
+                                thisLevel = 3;
+                            } else if (planeTrail[i].Altitude > 10000 && planeTrail[i].Altitude <= 14000) {
+                                thisLevel = 4;
+                            } else if (planeTrail[i].Altitude > 14000 && planeTrail[i].Altitude <= 19000) {
+                                thisLevel = 5;
+                            } else if (planeTrail[i].Altitude > 19000 && planeTrail[i].Altitude <= 24000) {
+                                thisLevel = 6;
+                            } else if (planeTrail[i].Altitude > 24000 && planeTrail[i].Altitude <= 29000) {
+                                thisLevel = 7;
+                            } else if (planeTrail[i].Altitude > 29000 && planeTrail[i].Altitude <= 34000) {
+                                thisLevel = 8;
+                            } else if (planeTrail[i].Altitude > 34000 && planeTrail[i].Altitude <= 40000) {
+                                thisLevel = 9;
+                            } else if (planeTrail[i].Altitude > 40000) {
+                                thisLevel = 10;
+                            }
+
+                            if (thisLevel !== lastLevel) {
+                                newTrailArray.push(new BMap.Point(planeTrail[i].Longitude, planeTrail[i].Latitude));
+                                renderFlightTrail(newTrailArray, thisLevel);
+                                newTrailArray = [];
+                                lastLevel = thisLevel;
+                            }
+
+                            //这里push第二次，为了避免断连
                             newTrailArray.push(new BMap.Point(planeTrail[i].Longitude, planeTrail[i].Latitude));
                         }
 
-                        window.planePolyLineTrail = new BMap.Polyline(newTrailArray, {
-                            strokeColor: "black",
-                            strokeWeight: 2,
-                            strokeOpacity: 1,
-                            strokeStyle: "solid"
-                        })
-
-                        map.addOverlay(planePolyLineTrail);
+                        renderFlightTrail(newTrailArray, thisLevel);
 
                         //更新航班坐标
                         if (newTrailArray.length > 0) {
@@ -232,25 +259,6 @@
                             layer.msg('航班数据加载失败！请刷新航班');
                             return;
                         }
-
-                        //console.log(this.flight, userDetail, thisFlightPlanObj);
-
-                        /*
-                        {
-                            callSign: this.callSign,
-                            userDetail,
-                            departureAirport: thisFlightPlanObj ? thisFlightPlanObj.DepartureAirportCode : 'UnK',
-                            destinationAirport: thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK',
-                            callSign: this.callSign,
-                            altitude: parseInt(this.flight.Altitude) + 'ft',
-                            heading: parseInt(this.flight.Heading) + 'deg',
-                            speed: parseInt(this.flight.Speed) + 'knot',
-                            verticalSpeed: parseInt(this.flight.VerticalSpeed) + 'ft/min',
-                            longitude: this.flight.Longitude,
-                            latitude: this.flight.Latitude,
-                            wpt: wpt,
-                        }
-                        */
 
                         //修改信息
                         //index页面飞机图标
@@ -360,6 +368,57 @@
         })
         getBoundsPlane();
         return userCount;
+    }
+
+    function renderFlightTrail(newTrailArray, level) {
+        var thisPolyLineTrail,
+            polyLineColor;
+
+        switch (level) {
+            case 0:
+                polyLineColor = "#00ffbc";
+                break;
+            case 1:
+                polyLineColor = "#00ffea";
+                break;
+            case 2:
+                polyLineColor = "#00f4ff";
+                break;
+            case 3:
+                polyLineColor = "#00d6ff";
+                break;
+            case 4:
+                polyLineColor = "#00bfff";
+                break;
+            case 5:
+                polyLineColor = "#00a0ff";
+                break;
+            case 6:
+                polyLineColor = "#0082ff";
+                break;
+            case 7:
+                polyLineColor = "#005bff";
+                break;
+            case 8:
+                polyLineColor = "#002dff";
+                break;
+            case 9:
+                polyLineColor = "#8900ff";
+                break;
+            case 10:
+                polyLineColor = "#ce00ff";
+                break;
+        }
+
+        thisPolyLineTrail = new BMap.Polyline(newTrailArray, {
+            strokeColor: polyLineColor,
+            strokeWeight: 2,
+            strokeOpacity: 1,
+            strokeStyle: "solid"
+        })
+
+        window.planePolyLineTrail.push(thisPolyLineTrail);
+        map.addOverlay(thisPolyLineTrail);
     }
 
     function getFlightPlans(sessionId, callback) {
