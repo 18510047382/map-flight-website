@@ -126,8 +126,6 @@ function getAirportExcelFn(isFirst) {
                     if (xmlhttp.status == 200) {
                         var airportWeatherData = JSON.parse(xmlhttp.responseText);
 
-                        console.log(airportWeatherData);
-
                         if (typeof airportWeatherData.error !== 'undefined') {
                             document.querySelector('#component-airport-weather-ok').style.display = 'none';
                             document.querySelector('#component-airport-weather-error').style.display = 'block';
@@ -222,7 +220,7 @@ function getBoundsListAirport(smlng, bglng, smlat, bglat) {
 
     for (var i in airportMarkers) {
         var _point = airportMarkers[i].info;
-        if (smlng < _point.lon && _point.lon < bglng && smlat < _point.lat && _point.lat < bglat && localStorage.displayAirport === 'true') {
+        if (smlng < _point.lon && _point.lon < bglng && smlat < _point.lat && _point.lat < bglat && (localStorage.displayAirport === 'true' || typeof airportMarkers[i].isShowByGetPlane !== 'undefined')) {
             //显示
             listshow.push(airportMarkers[i]);
             //如果之前被隐藏则显示
