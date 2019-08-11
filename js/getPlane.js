@@ -195,6 +195,8 @@
                             layer.close(loadPlaneDataLayer);
                         }
 
+                        console.log(this.mk)
+
                         var newTrailArray = [];
                         for (var i = 0; i < planeTrail.length; i++) {
                             newTrailArray.push(new BMap.Point(planeTrail[i].Longitude, planeTrail[i].Latitude));
@@ -208,7 +210,12 @@
                         })
 
                         map.addOverlay(planePolyLineTrail);
-                    })
+
+                        //更新航班坐标
+                        if (newTrailArray.length > 0) {
+                            this.mk.setPosition(newTrailArray[newTrailArray.length - 1]);
+                        }
+                    }.bind(this))
 
                     getUserDetail(this.flight.UserID, (userDetail) => {
                         finishLoadCount++;
@@ -336,7 +343,8 @@
                         }
                     })
                 }.bind({
-                    flight: flights[i]
+                    flight: flights[i],
+                    mk
                 })
 
                 mk.info = {
