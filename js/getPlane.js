@@ -3,6 +3,7 @@
     window.planeList = [];
     window.planeListObj = {};
     window.planePolyLine = undefined;
+    window.planePolyLineTrailFlightID = null;
     window.planePolyLineTrail = [];
 
     var flightPlanObj = {},
@@ -170,8 +171,7 @@
                     rotation: flights[i].Heading
                 })
                 mk.onclick = function() {
-                    var loadPlaneDataLayer = layer.load(2),
-                        finishLoadCount = 0;
+                    var loadPlaneDataLayer = layer.load(2);
 
                     for (var i = 0; i < planePolyLineTrail.length; i++) {
                         map.removeOverlay(planePolyLineTrail[i]);
@@ -188,11 +188,11 @@
                         planePolyLine = undefined;
                     }
 
-                    getPlaneTrail(this.flight.FlightID, function(planeTrail) {
-                        finishLoadCount++;
+                    planePolyLineTrailFlightID = this.flight.FlightID;
 
-                        if (finishLoadCount === 2) {
-                            layer.close(loadPlaneDataLayer);
+                    getPlaneTrail(this.flight.FlightID, function(planeTrail) {
+                        if (planePolyLineTrailFlightID !== this.flight.FlightID) {
+                            return;
                         }
 
                         var newTrailArray = [],
@@ -245,11 +245,7 @@
                     }.bind(this))
 
                     getUserDetail(this.flight.UserID, (userDetail) => {
-                        finishLoadCount++;
-
-                        if (finishLoadCount === 2) {
-                            layer.close(loadPlaneDataLayer);
-                        }
+                        layer.close(loadPlaneDataLayer);
 
                         var thisFlightPlanObj = flightPlanObj[this.flight.FlightID];
 
@@ -265,12 +261,12 @@
                         document.querySelector('#component-plane-index img').src = 'https://cdn.liveflightapp.com/aircraft-images/' + this.flight.AircraftID + '/' + this.flight.LiveryID + '.jpg';
                         //index页面主按钮的点击事件
                         document.querySelector('#component-plane-index-operationBoard-operationBar-toFlightLocationOnMapBtn').onclick = function() {
-                            map.panTo(new BMap.Point(this.Longitude, this.Latitude), {
+                            map.panTo(this.getPosition(), {
                                 noAnimation: true
                             })
                             getBoundsPlane();
                             getBoundsAirport();
-                        }.bind(this.flight);
+                        }.bind(this.mk);
                         document.querySelector('#component-plane-index-operationBoard-operationBar-toFlightPlanBtn').onclick = function() {
                             document.querySelector('#component-plane-menu-infoBtn').click();
                         }.bind(this.flight);
@@ -338,7 +334,7 @@
                         componentPlaneCloseBar.classList.add('show-component-plane-closeBar');
 
                         if (typeof airportMarkers !== 'undefined' && airportMarkers[thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK']) {
-                            window.planePolyLine = new BMap.Polyline([new BMap.Point(this.flight.Longitude, this.flight.Latitude), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
+                            window.planePolyLine = new BMap.Polyline([this.mk.getPosition(), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
                                 strokeColor: "black",
                                 strokeWeight: 2,
                                 strokeOpacity: 1,
