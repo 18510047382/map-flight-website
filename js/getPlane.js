@@ -86,15 +86,15 @@
                     switch (serverName) {
                         case 'Casual Server':
                             localStorage.server = 'cs';
-                            location.reload();
+                            window.location.reload();
                             break;
                         case 'Training Server':
                             localStorage.server = 'ts';
-                            location.reload();
+                            window.location.reload();
                             break;
                         case 'Expert Server':
                             localStorage.server = 'es';
-                            location.reload();
+                            window.location.reload();
                             break;
                     }
                 }
