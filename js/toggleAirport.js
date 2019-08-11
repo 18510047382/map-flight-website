@@ -7,7 +7,9 @@ document.querySelector('#toggleAirport-btn').onclick = function() {
             document.querySelector('#toggleAirport-btn').classList.remove('layui-this');
             if (typeof window.airportMarkers !== 'undefined') {
                 for (let i in airportMarkers) {
-                    airportMarkers[i].hide();
+                    if (typeof airportMarkers[i].isShowByGetPlane === 'undefined') {
+                        airportMarkers[i].hide();
+                    }
                 }
             }
             layer.msg('大型机场已隐藏');
@@ -29,7 +31,9 @@ document.querySelector('#toggleAirport-btn').onclick = function() {
         document.querySelector('#toggleAirport-btn').classList.remove('layui-this');
         if (typeof window.airportMarkers !== 'undefined') {
             for (let i in airportMarkers) {
-                airportMarkers[i].hide();
+                if (typeof airportMarkers[i].isShowByGetPlane === 'undefined') {
+                    airportMarkers[i].hide();
+                }
             }
         }
         layer.msg('大型机场已隐藏');
