@@ -1,7 +1,7 @@
 var componentAirport = document.querySelector('#component-airport'),
     componentAirportCloseBar = document.querySelector('#component-airport-closeBar');
 
-function getAirportExcelFn(isFirst) {
+function getAirportExcelFn(isFirst, isHide) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", 'data/airport.csv', false);
     xmlhttp.send();
@@ -45,6 +45,11 @@ function getAirportExcelFn(isFirst) {
                 })
             }
         }
+
+        if (isHide) {
+            mk.hide();
+        }
+
         mk.onclick = function() {
             var layerLoading = layer.load(2);
 
@@ -187,8 +192,9 @@ function getAirportExcelFn(isFirst) {
 if (localStorage.displayAirport === undefined || localStorage.displayAirport === 'false') {
     //隐藏
     localStorage.displayAirport = false;
+    getAirportExcelFn(true, true);
 } else {
-    getAirportExcelFn(true);
+    getAirportExcelFn(true, false);
     document.querySelector('#toggleAirport-btn').classList.add('layui-this');
 }
 
