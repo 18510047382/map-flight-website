@@ -3,6 +3,7 @@
     window.planeList = [];
     window.planeListObj = {};
     window.planePolyLine = undefined;
+    window.planePolyLineTrail = undefined;
 
     var flightPlanObj = {},
         componentPlane = document.querySelector('#component-plane'),
@@ -169,19 +170,52 @@
                     rotation: flights[i].Heading
                 })
                 mk.onclick = function() {
-                    var loadPlaneDataLayer = layer.load(2);
+                    var loadPlaneDataLayer = layer.load(2),
+                        finishLoadCount = 0;
+
+                    if (planePolyLineTrail) {
+                        map.removeOverlay(planePolyLineTrail);
+                        planePolyLineTrail = undefined;
+                    }
 
                     if (planePolyLine) {
                         map.removeOverlay(planePolyLine);
                         if (!(localStorage.displayAirport === undefined || localStorage.displayAirport === 'true')) {
                             //隐藏
+                            planePolyLine.destAirportMk.isShowByGetPlane = undefined;
                             planePolyLine.destAirportMk.hide();
                         }
                         planePolyLine = undefined;
                     }
 
+                    getPlaneTrail(this.flight.FlightID, function(planeTrail) {
+                        finishLoadCount++;
+
+                        if (finishLoadCount === 2) {
+                            layer.close(loadPlaneDataLayer);
+                        }
+
+                        var newTrailArray = [];
+                        for (var i = 0; i < planeTrail.length; i++) {
+                            newTrailArray.push(new BMap.Point(planeTrail[i].Longitude, planeTrail[i].Latitude));
+                        }
+
+                        window.planePolyLineTrail = new BMap.Polyline(newTrailArray, {
+                            strokeColor: "black",
+                            strokeWeight: 2,
+                            strokeOpacity: 1,
+                            strokeStyle: "solid"
+                        })
+
+                        map.addOverlay(planePolyLineTrail);
+                    })
+
                     getUserDetail(this.flight.UserID, (userDetail) => {
-                        layer.close(loadPlaneDataLayer);
+                        finishLoadCount++;
+
+                        if (finishLoadCount === 2) {
+                            layer.close(loadPlaneDataLayer);
+                        }
 
                         var thisFlightPlanObj = flightPlanObj[this.flight.FlightID];
 
@@ -289,16 +323,16 @@
                         componentPlaneCloseBar.classList.add('show-component-plane-closeBar');
 
                         if (typeof airportMarkers !== 'undefined' && airportMarkers[thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK']) {
-                            var polyLine = new BMap.Polyline([new BMap.Point(this.flight.Longitude, this.flight.Latitude), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
+                            window.planePolyLine = new BMap.Polyline([new BMap.Point(this.flight.Longitude, this.flight.Latitude), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
                                 strokeColor: "black",
                                 strokeWeight: 2,
                                 strokeOpacity: 1,
                                 strokeStyle: "dashed"
                             })
                             airportMarkers[thisFlightPlanObj.DestinationAirportCode].show();
-                            polyLine.destAirportMk = airportMarkers[thisFlightPlanObj.DestinationAirportCode];
-                            planePolyLine = polyLine;
-                            map.addOverlay(polyLine);
+                            window.planePolyLine.destAirportMk = airportMarkers[thisFlightPlanObj.DestinationAirportCode];
+                            window.planePolyLine.destAirportMk.isShowByGetPlane = true;
+                            map.addOverlay(planePolyLine);
                         }
                     })
                 }.bind({
