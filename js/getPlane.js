@@ -253,26 +253,6 @@
                             window.planePolyLine.destAirportMk.isShowByGetPlane = true;
                             map.addOverlay(planePolyLine);
                         }
-
-                        //更新航班坐标
-                        if (newTrailArray.length > 0) {
-                            this.mk.setPosition(newTrailArray[newTrailArray.length - 1]);
-                        }
-
-                        var planeRotation = null;
-                        if (planeTrail.length > 1) {
-                            planeRotation = getHeadingWithPosition(planeTrail[planeTrail.length - 2].Longitude, planeTrail[planeTrail.length - 1].Longitude, planeTrail[planeTrail.length - 2].Latitude, planeTrail[planeTrail.length - 1].Latitude);
-                            this.mk.setRotation(planeRotation);
-                        }
-
-                        //更新航班信息
-                        if (planeRotation) {
-                            this.flight.Heading = planeRotation;
-                        }
-                        this.flight.Altitude = planeTrail[planeTrail.length - 1].Altitude;
-                        this.flight.VerticalSpeed = planeTrail[planeTrail.length - 1].VerticalSpeed;
-                        this.flight.Longitude = planeTrail[planeTrail.length - 1].Longitude;
-                        this.flight.Latitude = planeTrail[planeTrail.length - 1].Latitude;
                     }.bind(this))
 
                     getUserDetail(this.flight.UserID, (userDetail) => {
@@ -572,23 +552,6 @@
             listshow: listshow,
             listhide: listhide
         }
-    }
-
-    function getHeadingWithPosition(lng1, lng2, lat1, lat2) {
-        dRotateAngle = Math.atan2(Math.abs(lng1 - lng2), Math.abs(lat1 - lat2));
-        if (lng2 >= lng1) {
-            if (!(lat2 >= lat1)) {
-                dRotateAngle = Math.PI - dRotateAngle;
-            }
-        } else {
-            if (lat2 >= lat1) {
-                dRotateAngle = 2 * Math.PI - dRotateAngle;
-            } else {
-                dRotateAngle = Math.PI + dRotateAngle;
-            }
-        }
-        dRotateAngle = dRotateAngle * 180 / Math.PI;
-        return dRotateAngle;
     }
 
 })(window, document);
