@@ -143,10 +143,12 @@ main {
     width: 200px;
     position: fixed;
     bottom: 0px;
+    background: #393D49;
 }
 
 #left-nav {
     display: none;
+    padding-bottom: 45px;
 }
 
 #leftnav-btn {
