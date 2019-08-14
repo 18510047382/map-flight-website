@@ -238,6 +238,20 @@
 
                         renderFlightTrail(newTrailArray, thisLevel);
 
+                        //渲染到目的地的航线
+                        if (typeof airportMarkers !== 'undefined' && airportMarkers[thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK']) {
+                            window.planePolyLine = new BMap.Polyline([this.mk.getPosition(), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
+                                strokeColor: "black",
+                                strokeWeight: 2,
+                                strokeOpacity: 1,
+                                strokeStyle: "dashed"
+                            })
+                            airportMarkers[thisFlightPlanObj.DestinationAirportCode].show();
+                            window.planePolyLine.destAirportMk = airportMarkers[thisFlightPlanObj.DestinationAirportCode];
+                            window.planePolyLine.destAirportMk.isShowByGetPlane = true;
+                            map.addOverlay(planePolyLine);
+                        }
+
                         //更新航班坐标
                         if (newTrailArray.length > 0) {
                             this.mk.setPosition(newTrailArray[newTrailArray.length - 1]);
@@ -349,19 +363,6 @@
                         //显示面板
                         componentPlane.classList.add('show');
                         componentPlaneCloseBar.classList.add('show-component-plane-closeBar');
-
-                        if (typeof airportMarkers !== 'undefined' && airportMarkers[thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK']) {
-                            window.planePolyLine = new BMap.Polyline([this.mk.getPosition(), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
-                                strokeColor: "black",
-                                strokeWeight: 2,
-                                strokeOpacity: 1,
-                                strokeStyle: "dashed"
-                            })
-                            airportMarkers[thisFlightPlanObj.DestinationAirportCode].show();
-                            window.planePolyLine.destAirportMk = airportMarkers[thisFlightPlanObj.DestinationAirportCode];
-                            window.planePolyLine.destAirportMk.isShowByGetPlane = true;
-                            map.addOverlay(planePolyLine);
-                        }
                     })
                 }.bind({
                     flight: flights[i],
