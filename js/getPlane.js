@@ -242,6 +242,21 @@
                         if (newTrailArray.length > 0) {
                             this.mk.setPosition(newTrailArray[newTrailArray.length - 1]);
                         }
+
+                        var planeRotation = null;
+                        if (planeTrail.length > 1) {
+                            planeRotation = getHeadingWithPosition(planeTrail[planeTrail.length - 2].Longitude, planeTrail[planeTrail.length - 1].Longitude, planeTrail[planeTrail.length - 2].Latitude, planeTrail[planeTrail.length - 1].Latitude);
+                            this.mk.setRotation(planeRotation);
+                        }
+
+                        //更新航班信息
+                        if (planeRotation) {
+                            this.flight.Heading = planeRotation;
+                        }
+                        this.flight.Altitude = planeTrail[planeTrail.length - 1].Altitude;
+                        this.flight.VerticalSpeed = planeTrail[planeTrail.length - 1].VerticalSpeed;
+                        this.flight.Longitude = planeTrail[planeTrail.length - 1].Longitude;
+                        this.flight.Latitude = planeTrail[planeTrail.length - 1].Latitude;
                     }.bind(this))
 
                     getUserDetail(this.flight.UserID, (userDetail) => {
@@ -292,9 +307,11 @@
                         //index页面的呼号及显示名称
                         document.querySelector('#component-plane-index-operationBoard-callSign').innerText = this.flight.CallSign;
                         document.querySelector('#component-plane-index-operationBoard-displayName').innerText = this.flight.DisplayName;
-                        //index页面的机型名称、涂装名称、高度ft、高度m、vs ft、vs m、航向deg、航向rad、起飞机场、降落机场
+                        //index页面的机型名称、涂装名称、地速knot、地速KMH、高度ft、高度m、vs ft、vs m、航向deg、航向rad、起飞机场、降落机场
                         document.querySelector('#component-plane-index-info-aircraftName').innerText = aircraftData[this.flight.AircraftID + this.flight.LiveryID].aircraft;
                         document.querySelector('#component-plane-index-info-liveryName').innerText = aircraftData[this.flight.AircraftID + this.flight.LiveryID].livery;
+                        document.querySelector('#component-plane-index-info-gsKnot').innerText = parseInt(this.flight.Speed) + 'kn';
+                        document.querySelector('#component-plane-index-info-gsKMH').innerText = parseInt(this.flight.Speed * 1.852) + 'km/h';
                         document.querySelector('#component-plane-index-info-altitudeFt').innerText = parseInt(this.flight.Altitude) + 'ft';
                         document.querySelector('#component-plane-index-info-altitudeMetre').innerText = parseInt(this.flight.Altitude * 0.3048) + 'm';
                         document.querySelector('#component-plane-index-info-vsFt').innerText = parseInt(this.flight.VerticalSpeed) + 'ft';
@@ -447,9 +464,7 @@
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 var flightData = JSON.parse(xmlhttp.responseText);
                 if ((!Array.isArray(flightData)) || flightData.length === 0) {
-                    //alert('Map-Flight已经成功连接到了后台，但是获取的航班数据似乎有一些问题（偶尔有一次是很正常的，因为Live API随时可能返回不正确的数据）。在你关闭弹窗之后，Map-Flight将尝试刷新页面并重新获取数据，如果连续3次都不能获取正确的数据，请尝试联系网站管理员（QQ：17310415421）');
-                    //window.location.reload();
-                    getFlights(sessionId, callback)
+                    getFlights(sessionId, callback);
                     return;
                 }
                 callback(flightData);
@@ -537,8 +552,8 @@
             listshow = []; //显示的数据
 
         for (var i = 0, lengths = planeList.length; i < lengths; i++) {
-            var _point = planeList[i].info;
-            if (smlng < _point.lon && _point.lon < bglng && smlat < _point.lat && _point.lat < bglat) {
+            var _point = planeList[i].getPosition();
+            if (smlng < _point.lng && _point.lng < bglng && smlat < _point.lat && _point.lat < bglat) {
                 //显示
                 listshow.push(planeList[i]);
                 //如果之前被隐藏则显示
@@ -556,4 +571,22 @@
             listhide: listhide
         }
     }
+
+    function getHeadingWithPosition(lng1, lng2, lat1, lat2) {
+        dRotateAngle = Math.atan2(Math.abs(lng1 - lng2), Math.abs(lat1 - lat2));
+        if (lng2 >= lng1) {
+            if (!(lat2 >= lat1)) {
+                dRotateAngle = Math.PI - dRotateAngle;
+            }
+        } else {
+            if (lat2 >= lat1) {
+                dRotateAngle = 2 * Math.PI - dRotateAngle;
+            } else {
+                dRotateAngle = Math.PI + dRotateAngle;
+            }
+        }
+        dRotateAngle = dRotateAngle * 180 / Math.PI;
+        return dRotateAngle;
+    }
+
 })(window, document);
