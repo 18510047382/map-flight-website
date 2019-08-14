@@ -239,6 +239,8 @@
                         renderFlightTrail(newTrailArray, thisLevel);
 
                         //渲染到目的地的航线
+                        var thisFlightPlanObj = flightPlanObj[this.flight.FlightID];
+
                         if (typeof airportMarkers !== 'undefined' && airportMarkers[thisFlightPlanObj ? thisFlightPlanObj.DestinationAirportCode : 'UnK']) {
                             window.planePolyLine = new BMap.Polyline([this.mk.getPosition(), new BMap.Point(airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lon, airportMarkers[thisFlightPlanObj.DestinationAirportCode].info.lat)], {
                                 strokeColor: "black",
@@ -277,7 +279,6 @@
                         layer.close(loadPlaneDataLayer);
 
                         var thisFlightPlanObj = flightPlanObj[this.flight.FlightID];
-
                         userDetail = userDetail[0];
 
                         if (userDetail === undefined || userDetail.length === 0) {
