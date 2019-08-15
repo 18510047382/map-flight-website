@@ -5,6 +5,7 @@
     window.planePolyLine = undefined;
     window.planePolyLineTrailFlightID = null;
     window.planePolyLineTrail = [];
+    window.getBoundsPlane = getBoundsPlane;
 
     var flightPlanObj = {},
         componentPlane = document.querySelector('#component-plane'),
