@@ -1,0 +1,104 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (max-width: 850px) {
+    .layui-container {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    #title-banner {
+        height: 300px !important;
+        font-size: 30px !important;
+        padding-top: 50px !important;
+    }
+}
+
+@media screen and (max-width: 545px) {
+    #title-banner {
+        height: 220px !important;
+    }
+}
+
+@media screen and (max-width: 538px) {
+    .layui-col-md6 {
+        margin-bottom: 30px !important;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    #title-banner {
+        height: 170px !important;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    #title-banner {
+        font-size: 25px !important;
+        padding-top: 30px !important;
+    }
+}
+
+#title-banner {
+    height: 400px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 100;
+    cursor: default;
+    user-select: none;
+    box-sizing: border-box;
+    padding-top: 100px;
+}
+
+.app-placeholder {
+    width: calc(100% - (300px * 2)) !important;
+    height: 300px !important;
+    display: inline-block;
+}
+
+.layui-container {
+    height: 300px;
+    width: calc(100% - 200px);
+    margin: auto;
+}
+
+.layui-container .layui-row {
+    height: 300px;
+    text-align: center;
+}
+
+.layui-container .layui-row div {
+    height: 300px;
+    width: 250px;
+    display: inline-block;
+    border-radius: 5px;
+    transition: box-shadow 0.5s;
+    -webkit-transition:box-shadow 0.5s;
+    padding-top: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    float: none !important;
+}
+
+.layui-container .layui-row div:hover {
+    box-shadow: 5px 5px 5px #e2e2e2;
+}
+
+.layui-container .layui-row div strong {
+    font-weight: 100;
+    font-size: 20px;
+
+}
