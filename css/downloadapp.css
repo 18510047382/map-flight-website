@@ -61,6 +61,7 @@ body {
     user-select: none;
     box-sizing: border-box;
     padding-top: 100px;
+    background-color: #01AAED;
 }
 
 .app-placeholder {
