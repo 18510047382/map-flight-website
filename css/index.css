@@ -16,6 +16,10 @@ main {
     width: 100%;
 }
 
+.layui-layer.layui-layer-iframe.layui-layer-border {
+    z-index: 19891017 !important;
+}
+
 .layui-logo {
     color: #eeeeee !important;
 }
