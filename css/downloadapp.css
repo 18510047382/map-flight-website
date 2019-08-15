@@ -10,6 +10,24 @@ body {
     margin: 0;
 }
 
+@media screen and (max-width: 1750px) {
+    .layui-container {
+        width: calc(100% - 700px) !important;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .layui-container {
+        width: calc(100% - 300px) !important;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .layui-container {
+        width: calc(100% - 200px) !important;
+    }
+}
+
 @media screen and (max-width: 850px) {
     .layui-container {
         width: 100% !important;
