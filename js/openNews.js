@@ -4,7 +4,7 @@ if (!localStorage.isClickedNews || !localStorage.newsExpireTime || (new Date().g
         layui.use('layer', function() {
             layui.layer.open({
                 type: 2,
-                title: 'Map-Flight新闻 :)',
+                title: 'Map-Flight新闻',
                 shadeClose: true,
                 shade: false,
                 maxmin: true,
