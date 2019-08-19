@@ -306,7 +306,7 @@
                         //index页面的机型名称、涂装名称、地速knot、地速KMH、高度ft、高度m、vs ft、vs m、航向deg、航向rad、起飞机场、降落机场
                         document.querySelector('#component-plane-index-info-aircraftName').innerText = aircraftData[this.flight.AircraftID + this.flight.LiveryID].aircraft;
                         document.querySelector('#component-plane-index-info-liveryName').innerText = aircraftData[this.flight.AircraftID + this.flight.LiveryID].livery;
-                        document.querySelector('#component-plane-index-info-gsKnot').innerText = parseInt(this.flight.Speed) + 'kn';
+                        document.querySelector('#component-plane-index-info-gsKnot').innerText = parseInt(this.flight.Speed) + 'kts';
                         document.querySelector('#component-plane-index-info-gsKMH').innerText = parseInt(this.flight.Speed * 1.852) + 'km/h';
                         document.querySelector('#component-plane-index-info-altitudeFt').innerText = parseInt(this.flight.Altitude) + 'ft';
                         document.querySelector('#component-plane-index-info-altitudeMetre').innerText = parseInt(this.flight.Altitude * 0.3048) + 'm';
