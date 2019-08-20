@@ -59,7 +59,7 @@
 }
 
 #component-plane {
-    height: 80%;
+    height: calc(100% - 140px);
     width: 300px;
     background: white;
     border-radius: 3px;
