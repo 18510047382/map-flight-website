@@ -169,6 +169,7 @@ function getAirportExcelFn(isFirst, isHide) {
 
             xmlhttp.open("GET", 'https://avwx.rest/api/metar/' + this.info.code + '?options=&format=json&onfail=cache', true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.setRequestHeader("Authorization", "VdnASCN6-9v2iBTCZWTutj2RXSAH15QdGk9MzkbjnS8");
             xmlhttp.send();
         }
 
