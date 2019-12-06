@@ -1,1 +1,1 @@
-window.backendLink = "mapflight.skyogo.com";
+window.backendLink = "api.map-flight.com";
