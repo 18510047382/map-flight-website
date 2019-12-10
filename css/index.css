@@ -16,12 +16,21 @@ main {
     width: 100%;
 }
 
+/* A350 */
+.layui-header {
+    background: #1E9FFF !important;
+    color: #1E9FFF !important;
+}
+
 .layui-layer.layui-layer-iframe.layui-layer-border {
     z-index: 19891017 !important;
 }
 
+/* A350 */
 .layui-logo {
-    color: #eeeeee !important;
+    width: 250px !important; /* A350: need delete */
+    color: white !important;
+    font-weight: 600;
 }
 
 .layui-layer-tab .layui-layer-title {
@@ -74,7 +83,7 @@ main {
     display: inline-block;
     height: 60px;
     width: 600px;
-    background-image: url(../img/ads/laptop.png);
+    background-image: url(../img/ads/A350.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -93,7 +102,7 @@ main {
     #ads-img {
         height: 40px;
         width: 300px;
-        background-image: url(../img/ads/mobile.png) !important;
+        background-image: url(../img/ads/A350.png) !important;
     }
 }
 
@@ -157,6 +166,9 @@ main {
 
 #leftnav-btn {
     cursor: pointer;
+    /* delete A350 */
+    position: relative;
+    left: 30px;
 }
 
 #leftnav-btn .layui-icon {
