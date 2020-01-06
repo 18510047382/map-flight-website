@@ -16,19 +16,7 @@ main {
     width: 100%;
 }
 
-/* A350 */
-.layui-header {
-    background: #1E9FFF !important;
-    color: #1E9FFF !important;
-}
-
-.layui-layer.layui-layer-iframe.layui-layer-border {
-    z-index: 19891017 !important;
-}
-
-/* A350 */
 .layui-logo {
-    width: 250px !important; /* A350: need delete */
     color: white !important;
     font-weight: 600;
 }
@@ -170,9 +158,6 @@ main {
 
 #leftnav-btn {
     cursor: pointer;
-    /* delete A350 */
-    position: relative;
-    left: 30px;
 }
 
 #leftnav-btn .layui-icon {
